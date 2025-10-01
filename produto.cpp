@@ -1,0 +1,48 @@
+#include "produto.h"
+#include <iostream>
+using namespace std;
+
+Produto::Produto(int i_id, string i_nome, double i_preco, int i_qnt) : id(i_id), nome(i_nome), preco(i_preco), qnt(i_qnt) {}
+
+void Produto::setId(int id) {
+    this->id = id;
+}
+
+void Produto::setNome(string nome) {
+    this->nome = nome;
+}
+
+void Produto::setPreco(double preco) {
+    this->preco = preco;
+}
+
+void Produto::setQnt(int qnt) {
+    this->qnt = qnt;
+}
+
+int Produto::getId(int qnt) {
+    return qnt;
+}
+
+string Produto::getNome(string nome) {
+    return nome;
+}
+
+double Produto::getPreco(double preco) {
+    return preco;
+}
+
+int Produto::getQnt(int qnt) {
+    return qnt;
+}
+
+void Produto::mostrarDetalhes() {
+    cout << "------------------------------------" << endl;
+    cout << "O produto chama-se " << nome << endl;
+    cout << "Seu ID configura-se como " << id << endl;
+    cout << "Seu preço possui o valor de " << preco << endl;
+    cout << "Restam " << qnt << " para compra" << endl;
+    cout << "------------------------------------" << endl;
+    cout << "Pressione ENTER para continuar!";
+    cin.get();
+}
