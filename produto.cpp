@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Produto::Produto(int i_id, string i_nome, double i_preco, int i_qnt) : id(i_id), nome(i_nome), preco(i_preco), qnt(i_qnt) {}
+Produto::Produto(int i_id, const string &i_nome, double i_preco, int i_qnt) : id(i_id), nome(i_nome), preco(i_preco), qnt(i_qnt) {}
 
 void Produto::setId(int id) {
     this->id = id;
@@ -20,19 +20,19 @@ void Produto::setQnt(int qnt) {
     this->qnt = qnt;
 }
 
-int Produto::getId(int qnt) {
+int Produto::getId() const {
     return qnt;
 }
 
-string Produto::getNome(string nome) {
+string Produto::getNome() const {
     return nome;
 }
 
-double Produto::getPreco(double preco) {
+double Produto::getPreco() const {
     return preco;
 }
 
-int Produto::getQnt(int qnt) {
+int Produto::getQnt() const {
     return qnt;
 }
 
