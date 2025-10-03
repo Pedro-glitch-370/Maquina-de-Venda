@@ -43,6 +43,5 @@ void Produto::mostrarDetalhes() {
     cout << "Seu preço possui o valor de " << preco << endl;
     cout << "Restam " << qnt << " para compra" << endl;
     cout << "------------------------------------" << endl;
-    cout << "Pressione ENTER para continuar!";
     cin.get();
 }
