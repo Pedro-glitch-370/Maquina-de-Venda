@@ -5,9 +5,9 @@ using namespace std;
 int main() {
     Produto refri(1, "Refri", 5.00, 6);
     Produto cheetos(2, "Cheetos", 6.75, 6);
-    Produto agua(1, "Agua", 2.35, 6);
-    Produto fini(1, "Fini", 2.55, 6);
-    
+    Produto agua(3, "Agua", 2.35, 6);
+    Produto fini(4, "Fini", 2.55, 6);
+
     int resposta, saldo;
     bool ativo = true;
 

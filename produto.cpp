@@ -21,7 +21,7 @@ void Produto::setQnt(int qnt) {
 }
 
 int Produto::getId() const {
-    return qnt;
+    return id;
 }
 
 string Produto::getNome() const {
