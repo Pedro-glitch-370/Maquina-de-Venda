@@ -4,26 +4,26 @@
 using namespace std;
 
 class Produto {
-private:
-    int id;
-    string nome;
-    double preco;
-    int qnt;
+    private:
+        int id;
+        string nome;
+        double preco;
+        int qnt;
 
-public:
-    Produto(int i_id, const string &i_nome, double i_preco, int i_qnt);
+    public:
+        Produto(int i_id, const string &i_nome, double i_preco, int i_qnt);
 
-    void setId(int id);
-    void setNome(string nome);
-    void setPreco(double preco);
-    void setQnt(int qnt);
+        void setId(int id);
+        void setNome(string nome);
+        void setPreco(double preco);
+        void setQnt(int qnt);
 
-    int getId() const;
-    string getNome() const;
-    double getPreco() const;
-    int getQnt() const;
+        int getId() const;
+        string getNome() const;
+        double getPreco() const;
+        int getQnt() const;
 
-    void mostrarDetalhes();
+        void mostrarDetalhes();
 };
 
 #endif
