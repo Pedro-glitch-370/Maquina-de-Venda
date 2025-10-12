@@ -24,7 +24,7 @@ void inicializarGeradorAleatorio() {
 
 // A função 'falar' foi modificada.
 // Ela não recebe mais um nome de arquivo, mas sim o número total de bips.
-void falar(const string& texto, int totalDeBips, int delay) {
+void falar(const string& texto, int totalDeBips, int delay, int delay_final) {
     inicializarGeradorAleatorio();
 
     // Imprime o texto caractere por caractere
@@ -49,6 +49,8 @@ void falar(const string& texto, int totalDeBips, int delay) {
     }
     cout << endl;
 
+    this_thread::sleep_for(chrono::milliseconds(delay_final));
+    
     // Para o som que estiver tocando ao final da frase (funciona melhor no Windows)
 #ifdef _WIN32
     PlaySound(NULL, 0, 0);

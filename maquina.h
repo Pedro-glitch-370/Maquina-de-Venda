@@ -15,6 +15,8 @@ class Maquina {
         double getSaldo() const;
         void addSaldo(double adicao);
         void subSaldo(double remocao);
+
+        bool comprarProduto(Produto& produto);
 };
 
 #endif

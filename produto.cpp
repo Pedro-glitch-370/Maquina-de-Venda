@@ -36,12 +36,18 @@ int Produto::getQnt() const {
     return qnt;
 }
 
+void Produto::reduzirEstoque() {
+    if (qnt > 0) {
+        qnt--;
+    }
+}
+
 void Produto::mostrarDetalhes() {
     cout << "------------------------------------" << endl;
-    cout << "O produto chama-se " << nome << endl;
-    cout << "Seu ID configura-se como " << id << endl;
-    cout << "Seu preço possui o valor de " << preco << endl;
-    cout << "Restam " << qnt << " para compra" << endl;
+    cout << "Nome: " << nome << endl;
+    cout << "ID: " << id << endl;
+    cout << "Preço: " << preco << endl;
+    cout << "Quantidade: " << qnt << endl;
     cout << "------------------------------------" << endl;
     cin.get();
 }

@@ -28,7 +28,7 @@ int main() {
     estoque.insert({4, Produto(4, "Fini", 2.55, 6)});
 
     // --- Início do Programa ---
-    falar("Bem-vindos, queridas, a maquina de vendas mais glamourosa de todas!", TOTAL_BIPS_METTATON, 50);
+    falar("Bem-vindos, queridas, a maquina de vendas mais glamourosa de todo o subsolo!", TOTAL_BIPS_METTATON, 50);
 
     double valorInicial = 0;
     cout << "\nQuanto voce deseja adicionar ao saldo inicial? G ";
@@ -88,7 +88,21 @@ int main() {
             // .count() verifica se a chave (ID) existe no map
             Produto& produtoSelecionado = estoque.at(resposta); // .at() acessa o produto
             produtoSelecionado.mostrarDetalhes();
-            // Aqui você poderia adicionar a lógica de compra do produto
+            cout << "Deseja comprar este produto? (1 para sim, 2 para nao): ";
+            int compra;
+            cin >> compra;
+            if (compra == 1) {
+                if (produtoSelecionado.getQnt() == 0) {
+                    falar("Desculpe querido, mas este produto esta esgotado.", TOTAL_BIPS_METTATON, 40);
+
+                } else if (produtoSelecionado.getPreco() > maquina.getSaldo()) {
+                        falar("Saldo insuficiente, querido!", TOTAL_BIPS_METTATON, 40);
+                    } else {
+                        maquina.comprarProduto(produtoSelecionado);
+                        falar("Compra realizada com sucesso! Aproveite seu produto, darling!", TOTAL_BIPS_METTATON, 40);
+                    }
+
+            }
         } else {
             cout << "Opcao invalida. Tente novamente." << endl;
         }

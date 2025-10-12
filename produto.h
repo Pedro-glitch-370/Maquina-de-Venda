@@ -24,6 +24,8 @@ class Produto {
         int getQnt() const;
 
         void mostrarDetalhes();
+
+        void reduzirEstoque();
 };
 
 #endif

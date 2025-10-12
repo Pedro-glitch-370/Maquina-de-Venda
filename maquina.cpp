@@ -19,3 +19,9 @@ void Maquina::addSaldo(double adicao) {
 void Maquina::subSaldo(double remocao) {
     saldo -= remocao;
 }
+
+bool Maquina::comprarProduto(Produto& produto){
+    this->saldo -= produto.getPreco();
+    produto.reduzirEstoque();
+    return true;
+}
