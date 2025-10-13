@@ -1,4 +1,4 @@
-#include "produto.h"
+#include "produtos/produto.h"
 #include "maquina.h"
 #include <iostream>
 using namespace std;
@@ -65,6 +65,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero invalido. Digite novamente." << endl;
+                                break;
                         }
                     }
                     break;

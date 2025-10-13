@@ -1,6 +1,6 @@
 #ifndef _MAQUINA_
 #define _MAQUINA_
-#include "produto.h"
+#include "produtos/produto.h"
 #include <iostream>
 using namespace std;
 
