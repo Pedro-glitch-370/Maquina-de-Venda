@@ -1,4 +1,4 @@
-#include "maquina.h"
+//#include "maquina.h"
 #include <iostream>
 using namespace std;
 
@@ -18,4 +18,10 @@ void Maquina::addSaldo(double adicao) {
 
 void Maquina::subSaldo(double remocao) {
     saldo -= remocao;
+}
+
+bool Maquina::comprarProduto(Produto& produto){
+    this->saldo -= produto.getPreco();
+    produto.reduzirEstoque();
+    return true;
 }
