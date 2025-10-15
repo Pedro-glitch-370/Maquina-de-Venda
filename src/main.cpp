@@ -1,5 +1,5 @@
-#include "produto.h"
-#include "maquina.h"
+#include "../inc/produtos/produtos.h"
+#include "../inc/maquina/maquina.h"
 #include <iostream>
 using namespace std;
 
@@ -19,7 +19,7 @@ int main() {
     cout << "Quanto voce deseja adicionar ao saldo?" << endl;
 
     cout << "Seu saldo atual: " << saldo.getSaldo() << "." << endl;
-    
+
     while (ativo) {
         cout << "Pressione 1 para ver Refri, 2 para ver Cheetos, 3 para ver Agua, 4 para ver Fini, 5 para acessar o saldo 6 para sair." << endl;
         cin >> resposta;
@@ -65,6 +65,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero invalido. Digite novamente." << endl;
+                                break;
                         }
                     }
                     break;

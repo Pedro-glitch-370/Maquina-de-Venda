@@ -1,12 +1,13 @@
-#ifndef _MAQUINA_
-#define _MAQUINA_
-#include "produto.h"
+#ifndef MAQUINA_DE_VENDA_MAQUINA_H
+#define MAQUINA_DE_VENDA_MAQUINA_H
+
+#include "../produtos/produtos.h"
 #include <iostream>
 using namespace std;
 
 class Maquina {
     private:
-        // fazer um JSON com os produtos 
+        // fazer um JSON com os produtos
         double saldo;
     public:
         Maquina(double i_saldo);
@@ -15,6 +16,8 @@ class Maquina {
         double getSaldo() const;
         void addSaldo(double adicao);
         void subSaldo(double remocao);
+
+        bool comprarProduto(Produto& produto);
 };
 
-#endif
+#endif //MAQUINA_DE_VENDA_MAQUINA_H

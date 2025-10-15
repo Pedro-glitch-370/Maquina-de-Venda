@@ -1,4 +1,4 @@
-#include "produto.h"
+#include "../../inc/produtos/produtos.h"
 #include <iostream>
 using namespace std;
 
@@ -44,4 +44,10 @@ void Produto::mostrarDetalhes() {
     cout << "Restam " << qnt << " para compra" << endl;
     cout << "------------------------------------" << endl;
     cin.get();
+}
+
+void Produto::reduzirEstoque() {
+    if (qnt > 0) {
+        qnt--;
+    }
 }

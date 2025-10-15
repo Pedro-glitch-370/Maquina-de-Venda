@@ -1,5 +1,6 @@
-#ifndef PRODUTO_H
-#define PRODUTO_H
+#ifndef MAQUINA_DE_VENDA_PRODUTOS_H
+#define MAQUINA_DE_VENDA_PRODUTOS_H
+
 #include <iostream>
 using namespace std;
 
@@ -26,4 +27,4 @@ class Produto {
         void mostrarDetalhes();
 };
 
-#endif
+#endif //MAQUINA_DE_VENDA_PRODUTOS_H
