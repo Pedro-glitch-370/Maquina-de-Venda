@@ -25,6 +25,8 @@ class Produto {
         int getQnt() const;
 
         void mostrarDetalhes();
+
+        void reduzirEstoque();
 };
 
 #endif //MAQUINA_DE_VENDA_PRODUTOS_H
