@@ -1,5 +1,5 @@
-#include "produtos/produtos.h"
-#include "maquina/maquina.h"
+#include "../inc/produtos/produtos.h"
+#include "../inc/maquina/maquina.h"
 #include <iostream>
 using namespace std;
 

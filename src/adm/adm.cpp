@@ -1,5 +1,5 @@
-//#include "adm.h"
-//#include "../../produtos/produto.h"
+#include "../../inc/adm/adm.h"
+#include "../../inc/produtos/produtos.h"
 #include <iostream>
 
 using namespace std;

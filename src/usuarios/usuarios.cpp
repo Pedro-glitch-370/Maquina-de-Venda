@@ -1,8 +1,8 @@
-//#include "usuario.h"
+#include "../../inc/usuarios/usuarios.h"
 #include <iostream>
 using namespace std;
 
-Usuario::Usuario(const string &i_login, const string &i_senha){}
+Usuario::Usuario(const string &, const string &){}
 
 void Usuario::setLogin(string login){
     this->login = login;
