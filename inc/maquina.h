@@ -1,7 +1,7 @@
 #ifndef MAQUINA_DE_VENDA_MAQUINA_H
 #define MAQUINA_DE_VENDA_MAQUINA_H
 
-#include "../produtos/produtos.h"
+#include "produtos.h"
 #include <iostream>
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef MAQUINA_DE_VENDA_ADM_H
 #define MAQUINA_DE_VENDA_ADM_H
 
-#include "../usuarios/usuarios.h"
+#include "usuarios.h"
 
 #include <iostream>
 using namespace std;

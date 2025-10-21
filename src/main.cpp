@@ -1,6 +1,6 @@
-#include "../inc/produtos/produtos.h"
-#include "../inc/maquina/maquina.h"
-#include "../inc/interface/interface.h"
+#include "../inc/produtos.h"
+#include "../inc/maquina.h"
+#include "../inc/interface.h"
 #include <iostream>
 #include <map> //pra std::map
 #include <limits> //para limpar o buffer de entrada

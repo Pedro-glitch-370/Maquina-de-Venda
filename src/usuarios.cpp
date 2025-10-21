@@ -1,4 +1,4 @@
-#include "../../inc/usuarios/usuarios.h"
+#include "../inc/usuarios.h"
 #include <iostream>
 using namespace std;
 

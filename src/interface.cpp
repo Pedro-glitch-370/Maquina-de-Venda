@@ -1,4 +1,4 @@
-#include "../../inc/interface/interface.h"
+#include "../inc/interface.h"
 #include <iostream> //pro cout
 #include <thread> //pro delay dos caracteres
 #include <chrono> //pro delay dos caracteres
