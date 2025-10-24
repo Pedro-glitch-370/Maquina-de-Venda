@@ -36,13 +36,10 @@ int Produto::getQnt() const {
     return qnt;
 }
 
-void Produto::mostrarDetalhes() {
+void Produto::mostrarDetalhes() const {
     cout << "------------------------------------" << endl;
-    cout << "O produto chama-se " << nome << endl;
-    cout << "Seu ID configura-se como " << id << endl;
-    cout << "Seu preço possui o valor de " << preco << endl;
-    cout << "Restam " << qnt << " para compra" << endl;
-    cout << "------------------------------------" << endl;
+    cout << "ID: " << id << "  | Nome: " << nome << endl;
+    cout << "Preco: " << preco << "  | Quantidade: " << qnt << endl;
     cin.get();
 }
 
