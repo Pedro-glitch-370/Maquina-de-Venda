@@ -37,6 +37,7 @@ int Produto::getQnt() const {
 }
 
 void Produto::mostrarDetalhes() const {
+    cin.clear();
     cout << "------------------------------------" << endl;
     cout << "ID: " << id << "  | Nome: " << nome << endl;
     cout << "Preco: " << preco << "  | Quantidade: " << qnt << endl;

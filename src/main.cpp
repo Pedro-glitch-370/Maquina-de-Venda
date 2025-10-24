@@ -7,37 +7,34 @@
 #include <limits> //para limpar o buffer de entrada
 using namespace std;
 
-void limparBufferEntrada(); //tentando decifrar isso daqui
+
+int invalidoUmOuDois(int entrada);
 
 int main() {
+    //valores fixos (por ora)
     constexpr int TOTAL_BIPS_METTATON = 9;
     Maquina fluxo(0);
-
     Produto refri(1, "Refri", 5.00, 6);
     Produto cheetos(2, "Cheetos", 6.75, 6);
     Produto agua(3, "Agua", 2.35, 6);
     Produto fini(4, "Fini", 2.55, 6);
 
-    //print inicial
-    falar("Bem-vindos, queridas, a maquina de vendas mais glamourosa de todo o subsolo!", TOTAL_BIPS_METTATON, 30);
-
-    //definir tipo de usuario
+    //comeco
+    falar("Bem-vindos, queridas, a maquina de vendas mais glamourosa de todo o subsolo!!", TOTAL_BIPS_METTATON, 20);
     int tipoUsuario;
-    falar("Voce eh ADM (1) ou um usuario normal (2)?", TOTAL_BIPS_METTATON, 15);
+    falar("Voce eh ADM (1) ou um usuario qualquer (2)?", TOTAL_BIPS_METTATON, 15);
     cin >> tipoUsuario;
-3
+
     //entrada invalida
     while (tipoUsuario != 1 and tipoUsuario != 2) {
-        cout << "Entrada invalida. Por favor, insira um numero." << endl;
-        limparBufferEntrada();
-        cin >> tipoUsuario;
+        invalidoUmOuDois(tipoUsuario);
     }
 
     //duas opcoes de usuario
     if (tipoUsuario == 1) {
         //cadastro
-        falar("Ohh, ADM! Assistente totalmente Dependente de Mim!!! Eh um prazer te-lo de volta!", TOTAL_BIPS_METTATON, 15);
-        falar("Mas antes, preciso saber se eh voce mesmo!!", TOTAL_BIPS_METTATON, 15);
+        falar("Ohh, um ADM! Um Assistente totalmente Dependente de Mim!!! Eh um prazer ter um de voces de volta!", TOTAL_BIPS_METTATON, 15);
+        falar("Mas antes, preciso saber se voce nao esta mentindo!!", TOTAL_BIPS_METTATON, 15);
 
         string login, senha;
         falar("Digite seu login:", TOTAL_BIPS_METTATON, 10);
@@ -45,10 +42,8 @@ int main() {
         falar("Digite sua senha:", TOTAL_BIPS_METTATON, 10);
         cin >> senha;
 
-        //entrada invalida
         while (senha != "mettattonehdemais") {
             falar("Senha errada, Darling! Digite novamente!", TOTAL_BIPS_METTATON, 10);
-            limparBufferEntrada();
             cin >> senha;
         }
 
@@ -60,7 +55,7 @@ int main() {
 
         //interface de opcoes
         while (ativo) {
-            cout << "\n------------------------------------" << endl;
+            cout << "------------------------------------" << endl;
             falar("O que deseja fazer, estrela?", TOTAL_BIPS_METTATON, 5);
             cout << "Fluxo de Caixa: " << fluxo.getSaldo() << endl;
             cout << "Pressione 1 pra adicionar produto" << endl;
@@ -89,13 +84,13 @@ int main() {
                     cin >> preco;
                     cout << "Quantidade: ";
                     cin >> qnt;
-                    voce.adicionarProduto(id, nome, preco, qnt); //Static member accessed through instance - what???
+                    Adm::adicionarProduto(id, nome, preco, qnt); //Static member accessed through instance - what???
                     break;
                 }
 
                 case 2:
                     falar("Ahhh... vai tirar um? Que pena...", TOTAL_BIPS_METTATON, 5);
-                    voce.retirarProduto();
+                    Adm::retirarProduto();
                     break;
 
                 case 3:
@@ -146,35 +141,46 @@ int main() {
                     break;
                 default:
                     cout << "Numero invalido. Digite novamente." << endl;
-                    limparBufferEntrada();
             }
 
         }
 
     } else if (tipoUsuario == 2) {
+        //explicacao inicial para o usuario
+        int explicar;
+        falar("Oh! Mais um fan!!! Quer que eu explique como funciona essa belezinha?", TOTAL_BIPS_METTATON, 10);
+        cin >> explicar;
+        cout << "Pressione 1 para Sim" << endl;
+        cout << "Pressione 2 para Nao" << endl;
 
-        //colocar saldo inicial
+        while (explicar != 1 and explicar != 2) {
+            invalidoUmOuDois(explicar);
+        }
+
+        if (explicar == 1) {
+            falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", TOTAL_BIPS_METTATON, 10);
+            falar("E nao se preocupe se restar algum valor aqui dentro. Tenho fluxo suficiente para te dar troco!", TOTAL_BIPS_METTATON, 15);
+            falar("Agora, insira o seu saldo:", TOTAL_BIPS_METTATON, 10);
+        } else if (explicar == 2) {
+            falar("Hunf, ta bom.", TOTAL_BIPS_METTATON, 10);
+            falar("Insira o seu saldo então:", TOTAL_BIPS_METTATON, 10);
+        }
+
+        //inserir saldo inicial do usuario
         double valorInicial;
-        falar("Oh! Mais um fan!!! Deixe-me explicar como essa belezinha funciona!!!", TOTAL_BIPS_METTATON, 10);
-        falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", TOTAL_BIPS_METTATON, 10);
-        falar("E nao se preocupe se restar algum valor aqui dentro. Tenho fluxo suficiente para te dar troco!", TOTAL_BIPS_METTATON, 10);
-        falar("Agora, insira o seu saldo:", TOTAL_BIPS_METTATON, 10);
         cin >> valorInicial;
 
-        //garantir que a entrada tá certa (além de tirar a entrada errada)
         while(cin.fail()) {
-            cout << "Entrada invalida. Por favor, insira um numero." << endl;
-            limparBufferEntrada();
+            cout << "Entrada invalida. Por favor, insira um numero (com ou sem casas decimais)." << endl;
             cin >> valorInicial;
         }
 
         Maquina saldo(valorInicial);
-
         int resposta;
         bool ativo = true;
 
         while (ativo) {
-            cout << "\n------------------------------------" << endl;
+            cout << "------------------------------------" << endl;
             falar("O que deseja fazer agora, estrela?", TOTAL_BIPS_METTATON, 40);
             cout << "Saldo atual: " << saldo.getSaldo() << endl;
             cout << "Pressione 1 pra ver Refri" << endl;
@@ -241,14 +247,14 @@ int main() {
                     break;
                 default:
                     cout << "Numero invalido. Digite novamente." << endl;
-                    limparBufferEntrada();
             }
         }
     }
     return 0;
 }
 
-void limparBufferEntrada() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+int invalidoUmOuDois(int entrada) {
+    cout << "Entrada invalida. Por favor, digite 1 ou 2." << endl;
+    cin >> entrada;
+    return entrada;
 }

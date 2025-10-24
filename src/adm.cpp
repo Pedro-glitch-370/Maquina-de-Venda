@@ -9,7 +9,7 @@ Adm::Adm(const string &login, const string &senha) : Usuario(login, senha) {}
 void Adm::adicionarProduto(const int id, const string &nome, const double preco, const int qnt) {
     const auto *produto = new Produto(id, nome, preco, qnt);
 
-    cout << produto->getNome() + " foi adicionado" <<endl;
+    cout << produto->getNome() + " foi adicionado(a)!" <<endl;
 }
 
 void Adm::retirarProduto() {
