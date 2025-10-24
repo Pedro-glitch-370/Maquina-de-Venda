@@ -53,7 +53,7 @@ int main() {
         int resposta;
         bool ativo = true;
 
-        //interface de opcoes
+        //interface de opcoes para adm
         while (ativo) {
             cout << "------------------------------------" << endl;
             falar("O que deseja fazer, estrela?", TOTAL_BIPS_METTATON, 5);
@@ -149,9 +149,9 @@ int main() {
         //explicacao inicial para o usuario
         int explicar;
         falar("Oh! Mais um fan!!! Quer que eu explique como funciona essa belezinha?", TOTAL_BIPS_METTATON, 10);
-        cin >> explicar;
         cout << "Pressione 1 para Sim" << endl;
         cout << "Pressione 2 para Nao" << endl;
+        cin >> explicar;
 
         while (explicar != 1 and explicar != 2) {
             invalidoUmOuDois(explicar);
@@ -175,6 +175,7 @@ int main() {
             cin >> valorInicial;
         }
 
+        //interface de opcoes para usuario
         Maquina saldo(valorInicial);
         int resposta;
         bool ativo = true;
