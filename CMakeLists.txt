@@ -9,6 +9,8 @@ add_executable(maquina_venda src/main.cpp
         src/produtos.cpp
         src/maquina.cpp
         src/interface.cpp
+        src/conta.cpp
+        src/caixa.cpp
 )
 
 target_link_libraries(maquina_venda winmm)

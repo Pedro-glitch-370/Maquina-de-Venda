@@ -1,12 +1,9 @@
 #include "../inc/produtos.h"
-#include "../inc/maquina.h"
+#include "../inc/conta.h"
 #include "../inc/interface.h"
 #include "../inc/adm.h"
 #include <iostream>
-#include <map> //pra std::map
-#include <limits> //para limpar o buffer de entrada
 using namespace std;
-
 
 int invalidoUmOuDois(int entrada);
 
@@ -14,6 +11,7 @@ int main() {
     //valores fixos (por ora)
     constexpr int TOTAL_BIPS_METTATON = 9;
     Maquina fluxo(0);
+
     Produto refri(1, "Refri", 5.00, 6);
     Produto cheetos(2, "Cheetos", 6.75, 6);
     Produto agua(3, "Agua", 2.35, 6);
@@ -176,14 +174,14 @@ int main() {
         }
 
         //interface de opcoes para usuario
-        Maquina saldo(valorInicial);
+        Conta contaUsuario(valorInicial);
         int resposta;
         bool ativo = true;
 
         while (ativo) {
             cout << "------------------------------------" << endl;
             falar("O que deseja fazer agora, estrela?", TOTAL_BIPS_METTATON, 40);
-            cout << "Saldo atual: " << saldo.getSaldo() << endl;
+            cout << "Saldo atual: " << contaUsuario.getSaldo() << endl;
             cout << "Pressione 1 pra ver Refri" << endl;
             cout << "Pressione 2 pra ver Cheetos" << endl;
             cout << "Pressione 3 pra ver Agua" << endl;
@@ -208,7 +206,7 @@ int main() {
                     fini.mostrarDetalhes();
                     break;
                 case 9: {
-                        cout << "Seu saldo atual: " << saldo.getSaldo() << "." << endl;
+                        cout << "Seu saldo atual: " << contaUsuario.getSaldo() << "." << endl;
 
                         bool vendo_saldo = true;
                         while (vendo_saldo) {
@@ -219,16 +217,16 @@ int main() {
                                     double adicao;
                                     cout << "Quanto voce deseja adicionar?" << endl;
                                     cin >> adicao;
-                                    saldo.addSaldo(adicao);
-                                    cout << "Seu saldo atual: " << saldo.getSaldo() << endl;
+                                    contaUsuario.addSaldo(adicao);
+                                    cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }
                                 case 2: {
                                     double remocao;
                                     cout << "Quanto voce deseja retirar?" << endl;
                                     cin >> remocao;
-                                    saldo.subSaldo(remocao);
-                                    cout << "Seu saldo atual: " << saldo.getSaldo() << endl;
+                                    contaUsuario.subSaldo(remocao);
+                                    cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }
                                 case 3:

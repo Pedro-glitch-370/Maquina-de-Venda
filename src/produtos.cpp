@@ -44,8 +44,10 @@ void Produto::mostrarDetalhes() const {
     cin.get();
 }
 
-void Produto::reduzirEstoque() {
+bool Produto::reduzirEstoque() {
     if (qnt > 0) {
         qnt--;
+        return true;
     }
+    return false;
 }

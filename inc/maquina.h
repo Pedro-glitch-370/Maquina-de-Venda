@@ -1,7 +1,6 @@
 #ifndef MAQUINA_DE_VENDA_MAQUINA_H
 #define MAQUINA_DE_VENDA_MAQUINA_H
 
-#include "produtos.h"
 #include <iostream>
 using namespace std;
 
@@ -10,14 +9,14 @@ class Maquina {
         // fazer um JSON com os produtos
         double saldo;
     public:
-        Maquina(double i_saldo);
+        Maquina(double d_saldo);
 
         void setSaldo();
         double getSaldo() const;
         void addSaldo(double adicao);
         void subSaldo(double remocao);
 
-        bool comprarProduto(Produto& produto);
+
 };
 
 #endif //MAQUINA_DE_VENDA_MAQUINA_H

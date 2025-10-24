@@ -26,7 +26,7 @@ class Produto {
 
         void mostrarDetalhes() const;
 
-        void reduzirEstoque();
+        bool reduzirEstoque();
 };
 
 #endif //MAQUINA_DE_VENDA_PRODUTOS_H
