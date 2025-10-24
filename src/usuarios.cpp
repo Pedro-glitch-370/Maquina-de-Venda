@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-Usuario::Usuario(const string &, const string &){}
+Usuario::Usuario(const string &, const string &) {}
 
-void Usuario::setLogin(string login){
+void Usuario::setLogin() {
     this->login = login;
 }
 
-void Usuario::setSenha(string senha){
+void Usuario::setSenha() {
     this->senha = senha;
 }
 

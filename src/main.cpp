@@ -1,5 +1,6 @@
 #include "../inc/produtos.h"
 #include "../inc/conta.h"
+#include "../inc/caixa.h"
 #include "../inc/interface.h"
 #include "../inc/adm.h"
 #include <iostream>
@@ -10,7 +11,7 @@ int invalidoUmOuDois(int entrada);
 int main() {
     //valores fixos (por ora)
     constexpr int TOTAL_BIPS_METTATON = 9;
-    Maquina fluxo(0);
+    Caixa fluxoDeCaixa(0);
 
     Produto refri(1, "Refri", 5.00, 6);
     Produto cheetos(2, "Cheetos", 6.75, 6);
@@ -25,22 +26,22 @@ int main() {
 
     //entrada invalida
     while (tipoUsuario != 1 and tipoUsuario != 2) {
-        invalidoUmOuDois(tipoUsuario);
+        tipoUsuario = invalidoUmOuDois(tipoUsuario);
     }
 
     //duas opcoes de usuario
     if (tipoUsuario == 1) {
         //cadastro
-        falar("Ohh, um ADM! Um Assistente totalmente Dependente de Mim!!! Eh um prazer ter um de voces de volta!", TOTAL_BIPS_METTATON, 15);
+        falar("Ohh, um ADM! Um Assistente totalmente Dependente de Mim!!! Eh um prazer ter um de voces aqui!", TOTAL_BIPS_METTATON, 15);
         falar("Mas antes, preciso saber se voce nao esta mentindo!!", TOTAL_BIPS_METTATON, 15);
-
         string login, senha;
         falar("Digite seu login:", TOTAL_BIPS_METTATON, 10);
         cin >> login;
-        falar("Digite sua senha:", TOTAL_BIPS_METTATON, 10);
+        falar("Digite a senha:", TOTAL_BIPS_METTATON, 10);
         cin >> senha;
 
-        while (senha != "mettattonehdemais") {
+        //entrada invalida
+        while (senha != fluxoDeCaixa.getSenha()) {
             falar("Senha errada, Darling! Digite novamente!", TOTAL_BIPS_METTATON, 10);
             cin >> senha;
         }
@@ -55,11 +56,12 @@ int main() {
         while (ativo) {
             cout << "------------------------------------" << endl;
             falar("O que deseja fazer, estrela?", TOTAL_BIPS_METTATON, 5);
-            cout << "Fluxo de Caixa: " << fluxo.getSaldo() << endl;
+            cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
             cout << "Pressione 1 pra adicionar produto" << endl;
             cout << "Pressione 2 pra retirar produto" << endl;
             cout << "Pressione 3 pra ver os produtos" << endl;
             cout << "Pressione 4 pra acessar o fluxo de caixa" << endl;
+            cout << "Pressione 5 pra alterar a senha da maquina" << endl;
             cout << "------------------------------------" << endl;
             cout << "Pressione 0 pra sair" << endl;
             cout << "------------------------------------" << endl;
@@ -99,46 +101,60 @@ int main() {
                     break;
 
                 case 4: {
-                        cout << "Fluxo de Caixa: " << fluxo.getSaldo() << endl;
+                        cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
 
                         bool vendo_fluxo = true;
                         while (vendo_fluxo) {
                             falar("Deseja adicionar (1), retirar (2) ou retornar (3)?", TOTAL_BIPS_METTATON, 40);
                             cin >> resposta;
+
+                            while (resposta != 1 and resposta != 2 and resposta != 3) {
+                                cout << "Numero invalido. Digite novamente." << endl;
+                                cin >> resposta;
+                            }
+
                             switch (resposta) {
                                 case 1: {
                                     double adicao;
                                     cout << "Quanto voce deseja adicionar?" << endl;
                                     cin >> adicao;
-                                    fluxo.addSaldo(adicao);
-                                    cout << "Fluxo de Caixa: " << fluxo.getSaldo() << endl;
+                                    fluxoDeCaixa.addSaldo(adicao);
+                                    cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
                                     break;
                                 }
                                 case 2: {
                                     double remocao;
                                     cout << "Quanto voce deseja retirar?" << endl;
                                     cin >> remocao;
-                                    fluxo.subSaldo(remocao);
-                                    cout << "Fluxo de Caixa: " << fluxo.getSaldo() << endl;
+                                    fluxoDeCaixa.subSaldo(remocao);
+                                    cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
                                     break;
                                 }
                                 case 3:
                                     vendo_fluxo = false;
                                     break;
                                 default:
-                                    cout << "Numero invalido. Digite novamente." << endl;
+                                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
                                     break;
                             }
                         }
                         break;
                     }
 
+                /*case 5: {
+                    string novaSenha;
+                    fluxoDeCaixa.mudarSenha(novaSenha);
+                    break;
+                }*/
+
                 case 0:
                     falar("Ate a proxima, darling! Nao mude de canal!", TOTAL_BIPS_METTATON, 50);
                     ativo = false;
                     break;
+
                 default:
-                    cout << "Numero invalido. Digite novamente." << endl;
+                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                    break;
             }
 
         }
@@ -152,16 +168,16 @@ int main() {
         cin >> explicar;
 
         while (explicar != 1 and explicar != 2) {
-            invalidoUmOuDois(explicar);
+            explicar = invalidoUmOuDois(explicar);
         }
 
         if (explicar == 1) {
             falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", TOTAL_BIPS_METTATON, 10);
-            falar("E nao se preocupe se restar algum valor aqui dentro. Tenho fluxo suficiente para te dar troco!", TOTAL_BIPS_METTATON, 15);
+            falar("E nao se preocupe se restar algum valor aqui dentro. Tenho ouro suficiente no caixa para qualquer troco!", TOTAL_BIPS_METTATON, 15);
             falar("Agora, insira o seu saldo:", TOTAL_BIPS_METTATON, 10);
         } else if (explicar == 2) {
             falar("Hunf, ta bom.", TOTAL_BIPS_METTATON, 10);
-            falar("Insira o seu saldo então:", TOTAL_BIPS_METTATON, 10);
+            falar("Insira o seu saldo entao:", TOTAL_BIPS_METTATON, 10);
         }
 
         //inserir saldo inicial do usuario
@@ -192,6 +208,13 @@ int main() {
             cout << "------------------------------------" << endl;
 
             cin >> resposta;
+
+            while (resposta != 1 and resposta != 2 and resposta != 3
+                and resposta != 4 and resposta != 9 and resposta != 0) {
+                cout << "Numero invalido. Digite novamente." << endl;
+                cin >> resposta;
+            }
+
             switch (resposta) {
                 case 1:
                     refri.mostrarDetalhes();
@@ -212,6 +235,11 @@ int main() {
                         while (vendo_saldo) {
                             falar("Deseja adicionar saldo (1), retirar saldo (2) ou retornar (3)?", TOTAL_BIPS_METTATON, 40);
                             cin >> resposta;
+
+                            while (resposta != 1 and resposta != 2 and resposta != 3) {
+                                cout << "Numero invalido. Digite novamente." << endl;
+                            }
+
                             switch (resposta) {
                                 case 1: {
                                     double adicao;
@@ -221,6 +249,7 @@ int main() {
                                     cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }
+
                                 case 2: {
                                     double remocao;
                                     cout << "Quanto voce deseja retirar?" << endl;
@@ -229,11 +258,13 @@ int main() {
                                     cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }
+
                                 case 3:
                                     vendo_saldo = false;
                                     break;
+
                                 default:
-                                    cout << "Numero invalido. Digite novamente." << endl;
+                                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
                                     break;
                             }
                         }
@@ -245,7 +276,8 @@ int main() {
                     ativo = false;
                     break;
                 default:
-                    cout << "Numero invalido. Digite novamente." << endl;
+                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                    break;
             }
         }
     }

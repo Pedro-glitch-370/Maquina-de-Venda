@@ -15,8 +15,6 @@ class Maquina {
         double getSaldo() const;
         void addSaldo(double adicao);
         void subSaldo(double remocao);
-
-
 };
 
 #endif //MAQUINA_DE_VENDA_MAQUINA_H

@@ -6,9 +6,15 @@
 using namespace std;
 
 class Caixa : public Maquina {
+    private:
+        string senha = "ohyeah";
     public:
-        Caixa(double d_saldo);
+        Caixa(double saldo);
         void mostrarFluxoCaixa() const;
+
+        void setSenha();
+        string getSenha() const;
+        //void mudarSenha(string novaSenha);
 };
 
 #endif //MAQUINA_VENDA_CAIXA_H

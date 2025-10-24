@@ -12,10 +12,9 @@ class Usuario{
     public:
         Usuario(const string &login, const string &senha);
 
-        void setLogin(string login);
+        void setLogin();
+        void setSenha();
         string getLogin() const;
-
-        void setSenha(string senha);
         string getSenha() const;
 };
 
