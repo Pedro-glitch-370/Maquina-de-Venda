@@ -2,14 +2,18 @@
 #include "../inc/maquina.h"
 #include "../inc/interface.h"
 #include <iostream>
+#include <fstream>
 #include <map> //pra std::map
 #include <limits> //para limpar o buffer de entrada
+#include <../json/json.hpp>
+
+using json = nlohmann::json;
 using namespace std;
 
 void limparBufferEntrada(); //tentando decifrar isso daqui
 
 int main() {
-    const int TOTAL_BIPS_METTATON = 9;
+    const int TOTAL_BIPS_METTATON = 9;  
 
     Produto refri(1, "Refri", 5.00, 6);
     Produto cheetos(2, "Cheetos", 6.75, 6);
