@@ -3,28 +3,29 @@
 
 #include <iostream>
 
-class Pagamento {
+class pagamento {
 protected:
-    double valorPago; // valor registrado pelo método de pagamento
+    double valorpago; // valor registrado pelo método de pagamento
 
 public:
     // construtores
-    Pagamento() noexcept : valorPago(0.0) {}
-    explicit Pagamento(double valor) noexcept : valorPago(valor) {} // recebe valor, e guarda
+    pagamento() noexcept : valorpago(0.0) {}
+    explicit pagamento(double valor) noexcept : valorpago(valor) {} // recebe valor, e guarda
 
     // subclasse insere modo de pagamento
-    virtual void inserirDinheiro(double valor) = 0;
+    virtual void inserirdinheiro(double valor) = 0;
 
     // devolve o valor para maquina, pq era protegido
-    double getValorPago() const noexcept { return valorPago; }
+    double getvalorpago() const noexcept { return valorPago; }
 
     // imprime o valor acumulado
-    void mostrarValorPago() const {
-        std::cout << "Valor pago: R$ " << valorPago << std::endl;
+    void mostrarvalorpago() const {
+        std::cout << "Valor pago: R$ " << valorpago << std::endl;
     }
 
     // destrutor virtual (boa pratica)
-    virtual ~Pagamento() = default;
+    virtual ~pagamento() = default;
 };
 
 #endif // PAGAMENTO_H
+
