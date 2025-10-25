@@ -6,6 +6,7 @@
 #include <iostream>
 using namespace std;
 
+
 int invalidoUmOuDois(int entrada);
 
 int main() {
