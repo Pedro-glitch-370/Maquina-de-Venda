@@ -2,18 +2,21 @@
 #include <iostream>
 using namespace std;
 
-//construtor da classe
-pagamentocartao::pagamentocartao(const string& numero, const string& nome)
-    : numerocartao(numero), nometitular(nome) {}
-// metodo inserir dinheiro
-void pagamentocartao::inserirdinheiro(double valor) {
-    if (valor <= 0) { //verifica se o valor e positivo
-        std::cout << "Valor inválido! O valor deve ser positivo.\n";
+//construtor
+PagamentoCartao::PagamentoCartao(const string& numero, const string& nome) : numeroCartao(numero), nomeTitular(nome) {}
+
+//sobrescreve inserirDinheiro
+void PagamentoCartao::inserirDinheiro(const double valor) {
+    //verifica se o valor eh positivo
+    if (valor <= 0) {
+        cout << "Valor inválido! O valor deve ser positivo.\n";
         return;
     }
 
-    valorpago += valor; //adiciona o valor ao total pago
-    //msg de pagamento
-    std::cout << "Pagamento de R$ " << valor << " via cartão.\n"
-              << "Titular: " << nometitular << "\n";
+    //adicionar o valor ao total pago
+    adicionarValor(valor);
+
+    //mensagem de pagamento
+    cout << "Pagamento de " << valor << " G via MettaCard.\n"
+              << "Titular: " << nomeTitular << "\n";
 }

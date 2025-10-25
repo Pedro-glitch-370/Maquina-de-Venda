@@ -12,20 +12,25 @@ class Produto {
         int qnt;
 
     public:
-        Produto(int i_id, const string &i_nome, double i_preco, int i_qnt);
+        //construtor
+        Produto(int id, const string &nome, double preco, int qnt);
 
-        void setId(int id);
-        void setNome(string nome);
-        void setPreco(double preco);
-        void setQnt(int qnt);
+        //setters
+        void setId();
+        void setNome();
+        void setPreco();
+        void setQnt();
 
+        //getters
         int getId() const;
         string getNome() const;
         double getPreco() const;
         int getQnt() const;
 
+        //metodo para mostrar atributos do produto
         void mostrarDetalhes() const;
 
+        //metodo para retirar um produto do estoque
         bool reduzirEstoque();
 };
 

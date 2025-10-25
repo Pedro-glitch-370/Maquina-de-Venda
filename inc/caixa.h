@@ -8,12 +8,20 @@ using namespace std;
 class Caixa : public Maquina {
     private:
         string senha = "ohyeah";
+
     public:
-        Caixa(double saldo);
+        //construtor
+        explicit Caixa(double saldo);
+
+        //metodo para imprimir a quantia de ouro na maquina
         void mostrarFluxoCaixa() const;
 
+        //setter
         void setSenha();
+
+        //getter
         string getSenha() const;
+
         //void mudarSenha(string novaSenha);
 };
 

@@ -2,24 +2,27 @@
 #include <iostream>
 using namespace std;
 
-Produto::Produto(int i_id, const string &i_nome, double i_preco, int i_qnt) : id(i_id), nome(i_nome), preco(i_preco), qnt(i_qnt) {}
+//construtor
+Produto::Produto(const int id, const string &nome, const double preco, const int qnt) : id(id), nome(nome), preco(preco), qnt(qnt) {}
 
-void Produto::setId(int id) {
+//setters
+void Produto::setId() {
     this->id = id;
 }
 
-void Produto::setNome(string nome) {
+void Produto::setNome() {
     this->nome = nome;
 }
 
-void Produto::setPreco(double preco) {
+void Produto::setPreco() {
     this->preco = preco;
 }
 
-void Produto::setQnt(int qnt) {
+void Produto::setQnt() {
     this->qnt = qnt;
 }
 
+//getters
 int Produto::getId() const {
     return id;
 }
@@ -36,6 +39,7 @@ int Produto::getQnt() const {
     return qnt;
 }
 
+//metodo para mostrar atributos do produto
 void Produto::mostrarDetalhes() const {
     cout << "------------------------------------" << endl;
     cout << "ID: " << id << "        | Nome: " << nome << endl;
@@ -44,6 +48,7 @@ void Produto::mostrarDetalhes() const {
     cin.get();
 }
 
+//metodo para retirar um produto do estoque
 bool Produto::reduzirEstoque() {
     if (qnt > 0) {
         qnt--;

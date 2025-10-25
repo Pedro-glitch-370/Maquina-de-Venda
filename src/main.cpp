@@ -6,7 +6,6 @@
 #include <iostream>
 using namespace std;
 
-
 int invalidoUmOuDois(int entrada);
 
 int main() {
@@ -119,7 +118,7 @@ int main() {
                                     double adicao;
                                     cout << "Quanto voce deseja adicionar?" << endl;
                                     cin >> adicao;
-                                    fluxoDeCaixa.addSaldo(adicao);
+                                    fluxoDeCaixa.adicionarSaldo(adicao);
                                     cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
                                     break;
                                 }
@@ -127,7 +126,7 @@ int main() {
                                     double remocao;
                                     cout << "Quanto voce deseja retirar?" << endl;
                                     cin >> remocao;
-                                    fluxoDeCaixa.subSaldo(remocao);
+                                    fluxoDeCaixa.subtrairSaldo(remocao);
                                     cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
                                     break;
                                 }
@@ -246,7 +245,7 @@ int main() {
                                     double adicao;
                                     cout << "Quanto voce deseja adicionar?" << endl;
                                     cin >> adicao;
-                                    contaUsuario.addSaldo(adicao);
+                                    contaUsuario.adicionarSaldo(adicao);
                                     cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }
@@ -255,7 +254,7 @@ int main() {
                                     double remocao;
                                     cout << "Quanto voce deseja retirar?" << endl;
                                     cin >> remocao;
-                                    contaUsuario.subSaldo(remocao);
+                                    contaUsuario.subtrairSaldo(remocao);
                                     cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
                                 }

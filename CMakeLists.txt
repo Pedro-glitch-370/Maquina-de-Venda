@@ -11,11 +11,9 @@ add_executable(maquina_venda src/main.cpp
         src/interface.cpp
         src/conta.cpp
         src/caixa.cpp
-        inc/pagamento.h
-        inc/pagamentocartao.h
-        inc/pagamentodinheiro.h
         src/pagamentocartao.cpp
         src/pagamentodinheiro.cpp
+        src/pagamento.cpp
 )
 
 target_link_libraries(maquina_venda winmm)

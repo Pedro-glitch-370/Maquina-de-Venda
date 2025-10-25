@@ -4,28 +4,31 @@
 #include <iostream>
 using namespace std;
 
-class pagamento {
-protected:
-    double valorpago; // valor registrado pelo metodo de pagamento
+class Pagamento {
+    private:
+        double valorPago;
 
-public:
-    // construtores
-    pagamento() noexcept : valorpago(0.0) {}
-    explicit pagamento(double valor) noexcept : valorpago(valor) {} // recebe valor, e guarda
+    public:
+        //construtor default (sem argumentos)
+        Pagamento();
 
-    // subclasse insere modo de pagamento
-    virtual void inserirdinheiro(double valor) = 0;
+        //construtor com parâmetro que inicializa valorPago
+        explicit Pagamento(double valor);
 
-    // devolve o valor para maquina, porque era protegido
-    double getvalorpago() const noexcept { return valorPago; }
+        //metodo virtual que será implementado pelas classes derivadas
+        virtual void inserirDinheiro(double valor) = 0;
 
-    // imprime o valor acumulado
-    void mostrarvalorpago() const {
-        std::cout << "Valor pago: R$ " << valorpago << std::endl;
-    }
+        //getter
+        double getValorPago() const;
 
-    // destrutor virtual (boa pratica)
-    virtual ~pagamento() = default;
+        //metodo para imprimir o valor acumulado
+        void mostrarValorPago() const;
+
+        //metodo para adicionar quantia em valorPago
+        void adicionarValor(double valor);
+
+        //destrutor virtual
+        virtual ~Pagamento() = default;
 };
 
 

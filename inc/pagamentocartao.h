@@ -6,17 +6,17 @@
 #include <string>
 using namespace std;
 
-//declara pagamentocartao, herda de pagamento
-class pagamentocartao : public pagamento {
-private:
-    std::string numerocartao; //armazena numero e titular
-    std::string nometitular;
+class PagamentoCartao : public Pagamento {
+    private:
+        string numeroCartao;
+        string nomeTitular;
 
-public:
-    //construtor, recebe numero e nome
-    pagamentocartao(const string& numero, const string& nome);
-    // implementa pagamento por cartao
-    void inserirdinheiro(double valor) override;
+    public:
+        //construtor
+        PagamentoCartao(const string& numero, const string& nome);
+
+        //sobrescreve inserirDinheiro
+        void inserirDinheiro(double valor) override;
 };
 
 #endif //MAQUINA_VENDA_PAGAMENTOCARTAO_H

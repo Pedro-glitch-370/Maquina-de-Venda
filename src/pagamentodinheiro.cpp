@@ -2,14 +2,18 @@
 #include <iostream>
 using namespace std;
 
-// p registrar pagamento
-void pagamentodinheiro::inserirdinheiro(double valor) {
+//sobrescreve inserirDinheiro
+void PagamentoDinheiro::inserirDinheiro(double valor) {
+    //verifica se o valor eh positivo
     if (valor <= 0) {
-        std::cout << "Valor inválido! Insira um valor positivo.\n";
-        return; //sai do metodo sem adicionar
+        cout << "Valor inválido! Insira um valor positivo.\n";
+        return;
     }
 
-    valorpago += valor; //adiona valor
-    std::cout << "Você inseriu R$ " << valor << " em dinheiro.\n"
-              << "Total inserido: R$ " << valorpago << "\n";
+    //adicionar o valor ao total pago
+    adicionarValor(valor);
+
+    //mensagem de pagamento
+    cout << "Você inseriu " << valor << " em ouro.\n"
+              << "Total inserido: " << getValorPago() << " G\n";
 }

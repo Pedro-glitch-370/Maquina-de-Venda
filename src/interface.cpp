@@ -13,27 +13,27 @@
 using namespace std;
 
 void inicializarGeradorAleatorio() {
-    //mantém o valor de sementeDefinida entre as chamadas da função
+    //mantem o valor de sementeDefinida entre as chamadas da função
     static bool sementeDefinida = false;
 
     //srand é chamado apenas uma vez
     if (!sementeDefinida) {
-        srand(time(0));
+        srand(time(nullptr));
         sementeDefinida = true;
     }
 }
 
 //basicamente o nosso registro de tela
-void falar(const string& texto, int totalDeBips, int delay, int delay_final) {
+void falar(const string& texto, const int totalDeBips, const int delay, const int delay_final) {
     inicializarGeradorAleatorio();
 
     for (char c : texto) {
         //gera um número entre 1 e o total de bips e cria o nome do arquivo de som
-        int numeroAleatorio = (rand() % totalDeBips) + 1;
+        const int numeroAleatorio = rand() % totalDeBips + 1;
         string arquivoSom = "bip" + to_string(numeroAleatorio) + ".wav";
 
 #ifdef _WIN32 //requisitos especiais pro sistema operacional usado
-        PlaySound(TEXT(arquivoSom.c_str()), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
+        PlaySound(TEXT(arquivoSom.c_str()), nullptr, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 #else
         string comando = "aplay " + arquivoSom + " > /dev/null 2>&1 &";
         system(comando.c_str());
@@ -50,6 +50,6 @@ void falar(const string& texto, int totalDeBips, int delay, int delay_final) {
 
 //para qualquer som que ainda esteja tocando no windows
 #ifdef _WIN32
-    PlaySound(NULL, 0, 0);
+    PlaySound(nullptr, nullptr, 0);
 #endif
 }

@@ -9,12 +9,20 @@ class Maquina {
         // fazer um JSON com os produtos
         double saldo;
     public:
-        Maquina(double d_saldo);
+        //construtor
+        explicit Maquina(double d_saldo);
 
+        //setter
         void setSaldo();
+
+        //getter
         double getSaldo() const;
-        void addSaldo(double adicao);
-        void subSaldo(double remocao);
+
+        //metodo para adicionar quantia ao saldo
+        void adicionarSaldo(double adicao);
+
+        //metodo para remover quantia do saldo
+        void subtrairSaldo(double remocao);
 };
 
 #endif //MAQUINA_DE_VENDA_MAQUINA_H

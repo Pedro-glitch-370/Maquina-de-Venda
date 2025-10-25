@@ -10,10 +10,14 @@ class Usuario{
         string senha;
 
     public:
+        //construtor
         Usuario(const string &login, const string &senha);
 
+        //setters
         void setLogin();
         void setSenha();
+
+        //getters
         string getLogin() const;
         string getSenha() const;
 };

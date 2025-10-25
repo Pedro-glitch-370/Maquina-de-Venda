@@ -1,12 +1,12 @@
 #ifndef MAQUINA_VENDA_PAGAMENTODINHEIRO_H
 #define MAQUINA_VENDA_PAGAMENTODINHEIRO_H
 
-#include "pagamento.h" //base pagamento
+#include "pagamento.h"
 
-class pagamentodinheiro : public pagamento { // herda de pagamento
-public:
-    // implementa dinheiro sobrescrevendo a bse
-    void inserirdinheiro(double valor) override;
+class PagamentoDinheiro : public Pagamento {
+    public:
+        //sobrescreve inserirDinheiro
+        void inserirDinheiro(double valor) override;
 };
 
 #endif //MAQUINA_VENDA_PAGAMENTODINHEIRO_H

@@ -8,8 +8,13 @@ using namespace std;
 
 class Conta : public Maquina {
     public:
-        Conta(double d_saldo);
+        //construtor
+        explicit Conta(double d_saldo);
+
+        //metodo para mostrar a quantia do usuario
         void mostrarSaldoConta() const;
+
+        //metodo para o usuario poder comprar um produto existente
         void comprarProduto(Produto& produto);
 };
 
