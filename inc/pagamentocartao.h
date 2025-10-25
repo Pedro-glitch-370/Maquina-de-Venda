@@ -6,14 +6,14 @@
 #include <string>
 using namespace std;
 
-class PagamentoCartao : public Pagamento {
+class PagamentoCartao final : public Pagamento {
     private:
-        string numeroCartao;
+    int numeroCartao;
         string nomeTitular;
 
     public:
         //construtor
-        PagamentoCartao(const string& numero, const string& nome);
+        PagamentoCartao(const int& numero, const string& nome);
 
         //sobrescreve inserirDinheiro
         void inserirDinheiro(double valor) override;

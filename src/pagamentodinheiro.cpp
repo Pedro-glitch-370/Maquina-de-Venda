@@ -1,12 +1,13 @@
 #include "../inc/pagamentodinheiro.h"
+#include "../inc/interface.h"
 #include <iostream>
 using namespace std;
 
 //sobrescreve inserirDinheiro
-void PagamentoDinheiro::inserirDinheiro(double valor) {
+void PagamentoDinheiro::inserirDinheiro(const double valor) {
     //verifica se o valor eh positivo
     if (valor <= 0) {
-        cout << "Valor inválido! Insira um valor positivo.\n";
+        falar("Oooops! Valor invalido!! Deve ser uma quantia positiva, meu bem!", 30, 15);
         return;
     }
 
@@ -14,6 +15,6 @@ void PagamentoDinheiro::inserirDinheiro(double valor) {
     adicionarValor(valor);
 
     //mensagem de pagamento
-    cout << "Você inseriu " << valor << " em ouro.\n"
+    cout << "Voce inseriu " << valor << " em ouro.\n"
               << "Total inserido: " << getValorPago() << " G\n";
 }

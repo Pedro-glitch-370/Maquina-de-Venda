@@ -9,7 +9,7 @@ using namespace std;
 class Conta : public Maquina {
     public:
         //construtor
-        explicit Conta(double d_saldo);
+        explicit Conta(double saldo);
 
         //metodo para mostrar a quantia do usuario
         void mostrarSaldoConta() const;

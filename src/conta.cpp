@@ -3,7 +3,7 @@
 using namespace std;
 
 //construtor
-Conta::Conta(const double d_saldo) : Maquina(d_saldo) {}
+Conta::Conta(const double saldo) : Maquina(saldo) {}
 
 //metodo para mostrar a quantia do usuario
 void Conta::mostrarSaldoConta() const {

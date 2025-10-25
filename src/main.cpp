@@ -3,6 +3,8 @@
 #include "../inc/caixa.h"
 #include "../inc/interface.h"
 #include "../inc/adm.h"
+#include "../inc/pagamentodinheiro.h"
+#include "../inc/pagamentocartao.h"
 #include <iostream>
 using namespace std;
 
@@ -21,11 +23,7 @@ int main() {
     mensagemInicial();
     int tipoUsuario;
     cin >> tipoUsuario;
-
-    //entrada invalida
-    while (tipoUsuario != 1 and tipoUsuario != 2) {
-        tipoUsuario = invalidoUmOuDois(tipoUsuario);
-    }
+    tipoUsuario = invalidoUmOuDois(tipoUsuario);
 
     //duas opcoes de usuario
     if (tipoUsuario == 1) {
@@ -39,7 +37,7 @@ int main() {
 
         //entrada invalida
         while (senha != fluxoDeCaixa.getSenha()) {
-            falar("Senha errada, Darling! Digite novamente!", 15, 15);
+            falar("Senha errada, darling! Digite novamente!", 15, 15);
             cin >> senha;
         }
 
@@ -57,7 +55,7 @@ int main() {
 
             //entrada invalida
             while (resposta != 1 and resposta != 2 and resposta != 3 and resposta != 4 and resposta != 0) {
-                cout << "Numero invalido. Digite novamente." << endl;
+                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
                 cin >> resposta;
             }
 
@@ -103,7 +101,7 @@ int main() {
                             cin >> resposta;
 
                             while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                cout << "Numero invalido. Digite novamente." << endl;
+                                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
                                 cin >> resposta;
                             }
 
@@ -158,11 +156,7 @@ int main() {
         int explicar;
         primeiraMsgUser();
         cin >> explicar;
-
-        //entrada invalida
-        while (explicar != 1 and explicar != 2) {
-            explicar = invalidoUmOuDois(explicar);
-        }
+        explicar = invalidoUmOuDois(explicar);
 
         //entrada valida confirmada
         if (explicar == 1) {
@@ -171,14 +165,36 @@ int main() {
             explicar2();
         }
 
-        //inserir saldo inicial do usuario
-        double valorInicial;
-        cin >> valorInicial;
+        //selecao entre formas de pagamento
+        int formaInserir;
+        cin >> formaInserir;
+        formaInserir = invalidoUmOuDois(formaInserir);
+        double valorInicial = 0.0;
 
-        //entrada invalida
-        while(cin.fail()) {
-            cout << "Entrada invalida. Por favor, insira um numero (com ou sem casas decimais)." << endl;
+        //inserir saldo inicial
+        if (formaInserir == 1) {
+            pagarComOuro();
             cin >> valorInicial;
+
+            PagamentoDinheiro pagOuro;
+            pagOuro.inserirDinheiro(valorInicial);
+
+        } else if (formaInserir == 2) {
+            falar("Ooohhh! Voce tem um MettaCard?! Abalou!! Vamos estourar o cartao entao!", 30, 15);
+
+            falar("Digite o numero do cartao:", 30, 15);
+            int numeroCartao;
+            cin >> numeroCartao;
+
+            falar("Digite o nome do titular:", 30, 15);
+            string nomeTitular;
+            cin >> nomeTitular;
+
+            falar("Tudo cadastrado! Agora, digite a quantidade de saldo a ser inserida:", 30, 15);
+            cin >> valorInicial;
+
+            PagamentoCartao pagCartao(numeroCartao, nomeTitular);
+            pagCartao.inserirDinheiro(valorInicial);
         }
 
         //interface de opcoes para usuario
@@ -193,7 +209,7 @@ int main() {
             //entrada invalida
             while (resposta != 1 and resposta != 2 and resposta != 3
                 and resposta != 4 and resposta != 9 and resposta != 0) {
-                cout << "Numero invalido. Digite novamente." << endl;
+                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
                 cin >> resposta;
             }
 
@@ -219,14 +235,25 @@ int main() {
                             cin >> resposta;
 
                             while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                cout << "Numero invalido. Digite novamente." << endl;
+                                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                                cin >> resposta;
                             }
 
                             switch (resposta) {
                                 case 1: {
-                                    double adicao;
-                                    falar("Quanto voce deseja adicionar?", 30, 15);
-                                    cin >> adicao;
+                                    formaPagamento();
+                                    int novaFormaInserir;
+                                    cin >> novaFormaInserir;
+                                    novaFormaInserir = invalidoUmOuDois(novaFormaInserir);
+                                    double adicao = 0.0;
+
+                                    if (novaFormaInserir == 1) {
+                                        pagarComOuro();
+                                        cin >> adicao;
+                                    } else if (novaFormaInserir == 2) {
+                                        cin >> adicao;
+                                    }
+
                                     contaUsuario.adicionarSaldo(adicao);
                                     cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
                                     break;
@@ -267,7 +294,9 @@ int main() {
 }
 
 int invalidoUmOuDois(int entrada) {
-    falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 30, 15);
-    cin >> entrada;
+    while (entrada != 1 and entrada != 2) {
+        falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 30, 15);
+        cin >> entrada;
+    }
     return entrada;
 }

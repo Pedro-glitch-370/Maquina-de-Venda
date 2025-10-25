@@ -3,7 +3,7 @@
 
 #include "pagamento.h"
 
-class PagamentoDinheiro : public Pagamento {
+class PagamentoDinheiro final : public Pagamento {
     public:
         //sobrescreve inserirDinheiro
         void inserirDinheiro(double valor) override;

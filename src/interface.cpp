@@ -69,13 +69,42 @@ void interfaceUser(const Conta& contaUsuario) {
     cout << "------------------------------------" << endl;
 }
 
+void formaPagamento() {
+    falar("Pressione 1 pra inserir com ouro", 30, 15);
+    falar("Pressione 2 pra inserir via cartao", 30, 15);
+}
+
+void pagarComOuro() {
+    falar("Eh sempre bom ter umas moedinhas no bolso!", 30, 15);
+    falar("Digite a quantidade de ouro a ser inserida:", 30, 15);
+}
+
+/*void pagarComCartao() {
+    falar("Ooohhh! Voce tem um MettaCard?! Abalou!! Vamos estourar o cartao entao!", 30, 15);
+
+    falar("Digite o numero do cartao:", 30, 15);
+    int numeroCartao;
+    cin >> numeroCartao;
+
+    falar("Digite o nome do titular:", 30, 15);
+    string nomeTitular;
+    cin >> nomeTitular;
+
+    falar("Tudo cadastrado! Agora, digite a quantidade de saldo a ser inserida:", 30, 15);
+    cin >> valorInicial;
+
+    PagamentoCartao pagCartao(numeroCartao, nomeTitular);
+}*/
+
 void explicar1() {
     falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", 30, 15);
     falar("E nao se preocupe se restar algum valor aqui dentro. Tenho ouro suficiente no caixa para qualquer troco!", 30, 45);
-    falar("Agora, insira o seu saldo:", 30, 15);
+    falar("Agora, diga de que forma voce vai inserir seu saldo inicial:", 30, 15);
+    formaPagamento();
 }
 
 void explicar2() {
-    falar("Hunf, ta bom.", 30, 15);
-    falar("Insira o seu saldo entao:", 30, 15);
+    falar("Hunf, ta bom.", 30, 30);
+    falar("Pressione 1 pra inserir saldo inicial com ouro", 30, 15);
+    falar("Pressione 2 pra inserir saldo inicial via cartao", 30, 15);
 }
