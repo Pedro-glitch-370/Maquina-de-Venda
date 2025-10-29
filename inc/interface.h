@@ -10,22 +10,23 @@ using namespace std;
 void falar(const string& texto, int delay_caractere, int delay_final);
 
 //mensagens predefinidas
-void mensagemInicial();
+void msgInicial();
 int invalidoUmOuDois(int entrada);
 void primeiraMsgADM();
 void segundaMsgADM(int seletor);
 void primeiraMsgUser();
 void interfaceADM(Caixa& fluxoDeCaixa);
 void interfaceUser(Conta& contaUsuario);
-void explicar1();
-void explicar2();
-void invalido(int seletor);
+void msgExplicar1();
+void msgExplicar2();
+void msgInvalido(int seletor);
+void msgAddSaldo(int seletor);
 void msgAddProduto(int seletor);
 void msgTirarProduto();
 void msgAddOuro();
 void msgTirarOuro();
 void msgComprarProduto();
 void msgDefault();
-void ateMais();
+void msgAteMais();
 
 #endif //MAQUINA_DE_VENDA_INTERFACE_H

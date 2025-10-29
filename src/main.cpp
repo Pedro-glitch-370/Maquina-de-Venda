@@ -12,7 +12,7 @@ int main() {
     Caixa fluxoDeCaixa(0);
 
     //comeco
-    mensagemInicial();
+    msgInicial();
     int tipoUsuario;
     cin >> tipoUsuario;
     tipoUsuario = invalidoUmOuDois(tipoUsuario);
@@ -52,10 +52,10 @@ int main() {
                 if (cin.fail()) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    invalido(1);
+                    msgInvalido(1);
                     resposta = -1;
                 } else if (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0) {
-                    invalido(2);
+                    msgInvalido(2);
                 }
 
             } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0);
@@ -94,7 +94,7 @@ int main() {
 
                     //entrada invalida
                     while (cin.fail()) {
-                        invalido(3);
+                        msgInvalido(3);
                         cin >> produtoARetirar;
                     }
 
@@ -112,16 +112,16 @@ int main() {
                         bool vendo_fluxo = true;
                         while (vendo_fluxo) {
                             do {
-                                falar("Deseja adicionar ao fluxo (1), retirar (2) ou retornar (3)?", 30, 15);
+                                msgAddSaldo(1);
                                 cin >> resposta;
 
                                 if (cin.fail()) {
                                     cin.clear();
                                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                    invalido(1);
+                                    msgInvalido(1);
                                     resposta = 0; //pra forcar a repeticao
                                 } else if (resposta != 1 && resposta != 2 && resposta != 3) {
-                                    invalido(2);
+                                    msgInvalido(2);
                                 }
                             } while (resposta != 1 && resposta != 2 && resposta != 3);
 
@@ -132,7 +132,7 @@ int main() {
                                     cin >> adicao;
 
                                     while (adicao <= 0) {
-                                        invalido(4);
+                                        msgInvalido(4);
                                     }
 
                                     fluxoDeCaixa.adicionarSaldo(adicao);
@@ -165,7 +165,7 @@ int main() {
                 }*/
 
                 case 0:
-                    ateMais();
+                    msgAteMais();
                     ativo = false;
                     break;
 
@@ -187,9 +187,9 @@ int main() {
 
         //entrada valida confirmada
         if (explicar == 1) {
-            explicar1();
+            msgExplicar1();
         } else if (explicar == 2) {
-            explicar2();
+            msgExplicar2();
         }
 
         double valorInicial;
@@ -198,7 +198,7 @@ int main() {
         while (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            invalido(5);
+            msgInvalido(5);
         }
 
         //interface de opcoes para usuario
@@ -213,7 +213,7 @@ int main() {
 
             //entrada invalida
             while (resposta != 1 and resposta != 2 and resposta != 9 and resposta != 0) {
-                invalido(2);
+                msgInvalido(2);
                 cin >> resposta;
             }
 
@@ -244,11 +244,11 @@ int main() {
 
                         bool vendo_saldo = true;
                         while (vendo_saldo) {
-                            falar("Deseja adicionar saldo (1), retirar saldo (2) ou retornar (3)?", 30, 15);
+                            msgAddSaldo(2);
                             cin >> resposta;
 
                             while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                invalido(2);
+                                msgInvalido(2);
                                 cin >> resposta;
                             }
 
@@ -284,7 +284,7 @@ int main() {
                     }
 
                 case 0:
-                    ateMais();
+                    msgAteMais();
                     ativo = false;
                     break;
 

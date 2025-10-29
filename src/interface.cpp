@@ -24,7 +24,7 @@ void falar(const string& texto, const int delay_caractere, const int delay_final
     delay(delay_final);
 }
 
-void mensagemInicial() {
+void msgInicial() {
     falar("Bem-vindos, queridos, a maquina de vendas mais glamourosa de todo o subsolo!!", 30, 100);
     falar("Voce eh ADM (1) ou um usuario qualquer (2)?", 30, 15);
 }
@@ -85,18 +85,18 @@ void interfaceUser(Conta& contaUsuario) {
     cout << "------------------------------------" << endl;
 }
 
-void explicar1() {
+void msgExplicar1() {
     falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", 30, 15);
     falar("E nao se preocupe se restar algum valor aqui dentro. Tenho ouro suficiente no caixa para qualquer troco!", 30, 45);
     falar("Agora, insira a quantidade de ouro que voce vai gastar!", 30, 15);
 }
 
-void explicar2() {
+void msgExplicar2() {
     falar("Hunf, ta bom.", 30, 35);
     falar("E quanto de ouro voce vai gastar agora, meu bem?", 30, 15);
 }
 
-void invalido(const int seletor) {
+void msgInvalido(const int seletor) {
     if (seletor == 1) {
         falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
     } else if (seletor == 2) {
@@ -107,6 +107,14 @@ void invalido(const int seletor) {
         falar("Oooops! Saldo invalido! Digite novamente!", 30, 15);
     } else if (seletor == 5) {
         falar("Oooops! Entrada invalida! Digite um NUMERO!", 30, 15);
+    }
+}
+
+void msgAddSaldo(const int seletor) {
+    if (seletor == 1) {
+        falar("Deseja adicionar ao fluxo (1), retirar (2) ou retornar (3)?", 30, 15);
+    } else if (seletor == 2) {
+        falar("Deseja adicionar saldo (1), retirar saldo (2) ou retornar (3)?", 30, 15);
     }
 }
 
@@ -140,4 +148,4 @@ void msgComprarProduto() {
 
 void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15); }
 
-void ateMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }
+void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }
