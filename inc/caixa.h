@@ -7,7 +7,7 @@ using namespace std;
 
 class Caixa : public Maquina {
     private:
-        string senha = "ohyeah";
+        string senha = "aa";
 
     public:
         //construtor

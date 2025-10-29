@@ -32,6 +32,9 @@ class Produto {
 
         //metodo para retirar um produto do estoque
         bool reduzirEstoque();
+
+        //metodo para checar se ja existe um produto de nome igual
+        static bool checarProdutoIgual(const string &nome);
 };
 
 #endif //MAQUINA_DE_VENDA_PRODUTOS_H

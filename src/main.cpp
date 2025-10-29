@@ -14,11 +14,6 @@ int main() {
     //valores fixos (por ora)
     Caixa fluxoDeCaixa(0);
 
-    Produto refri(1, "Refri", 5.00, 6);
-    Produto cheetos(2, "Cheetos", 6.75, 6);
-    Produto agua(3, "Agua", 2.35, 6);
-    Produto fini(4, "Fini", 2.55, 6);
-
     //comeco
     mensagemInicial();
     int tipoUsuario;
@@ -35,14 +30,14 @@ int main() {
         falar("Digite a senha:", 30, 15);
         cin >> senha;
 
-        //entrada invalida
-        while (senha != "aa") {
+        //entrada invalida (a senha eh aa)
+        while (senha != fluxoDeCaixa.getSenha()) {
             falar("Senha errada, darling! Digite novamente!", 15, 15);
             cin >> senha;
         }
 
         //entrada valida confirmada
-        Adm voce(login, senha);
+        Adm adm(login, senha);
         falar("Eh voce mesmo!! Bom te ver de novo!", 30, 15);
 
         int resposta;
@@ -67,28 +62,45 @@ int main() {
 
                     //passagem de dados
                     falar("Uhh, novo produto! Me diga tudo sobre ele!", 30, 15);
-                    falar("Digite o ID:", 30, 15);
-                    cin >> id;
                     falar("Digite o nome:", 30, 15);
                     cin >> nome;
+
+                    //entrada invalida
+                    do {
+                        if (Produto::checarProdutoIgual(nome)) {
+                            cout << "Ja existe um produto com o nome " << nome << ".\n";
+                        }
+
+                        falar("Digite outro nome:", 30, 15);
+                        cin >> nome;
+                    } while (Produto::checarProdutoIgual(nome));
+
                     falar("Digite o preco:", 30, 15);
                     cin >> preco;
                     falar("Digite a quantidade:", 30, 15);
                     cin >> qnt;
-                    Adm::adicionarProduto(id, nome, preco, qnt); //Static member accessed through instance - what???
+                    Adm::adicionarProduto(nome, preco, qnt);
                     break;
                 }
 
-                case 2:
+                case 2: {
                     falar("Ahhh... vai tirar um? Que pena...", 30, 15);
-                    Adm::retirarProduto();
+                    string produtoARetirar;
+                    cin >> produtoARetirar;
+
+                    while (cin.fail()) {
+                        falar("Entrada invalida! Digite novamente!", 30, 15);
+                        cin >> produtoARetirar;
+                    }
+                    Adm::retirarProduto(produtoARetirar);
                     break;
+                }
 
                 case 3:
-                    refri.mostrarDetalhes();
+                    /*refri.mostrarDetalhes();
                     cheetos.mostrarDetalhes();
                     agua.mostrarDetalhes();
-                    fini.mostrarDetalhes();
+                    fini.mostrarDetalhes();*/
                     break;
 
                 case 4: {
@@ -213,7 +225,7 @@ int main() {
             }
 
             switch (resposta) {
-                case 1:
+                /*case 1:
                     refri.mostrarDetalhes();
                     break;
                 case 2:
@@ -224,7 +236,7 @@ int main() {
                     break;
                 case 4:
                     fini.mostrarDetalhes();
-                    break;
+                    break;*/
                 case 9: {
                         cout << "Seu saldo atual: " << contaUsuario.getSaldo() << "." << endl;
 

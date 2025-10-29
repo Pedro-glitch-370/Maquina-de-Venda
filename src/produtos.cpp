@@ -1,6 +1,9 @@
 #include "../inc/produtos.h"
+#include "../json/json.hpp"
+#include <fstream>
 #include <iostream>
 using namespace std;
+using json = nlohmann::json;
 
 //construtor
 Produto::Produto(const int id, const string &nome, const double preco, const int qnt) : id(id), nome(nome), preco(preco), qnt(qnt) {}
@@ -53,6 +56,26 @@ bool Produto::reduzirEstoque() {
     if (qnt > 0) {
         qnt--;
         return true;
+    }
+    return false;
+}
+
+//metodo para checar se ja existe um produto de nome igual
+bool Produto::checarProdutoIgual(const string &nome) {
+    ifstream leitura("../db/produtos.json");
+    json j;
+
+    if (leitura.is_open()) {
+        leitura >> j;
+    }
+    leitura.close();
+
+    if (j.contains("produtos") && j["produtos"].is_array()) {
+        for (const auto& produto : j["produtos"]) {
+            if (produto["nome"] == nome) {
+                return true;
+            }
+        }
     }
     return false;
 }
