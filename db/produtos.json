@@ -17,6 +17,24 @@
             "nome": "Biscoito",
             "preco": 2.5,
             "quantidade": 6
+        },
+        {
+            "id": 6,
+            "nome": "Peixe",
+            "preco": 0.0,
+            "quantidade": 440
+        },
+        {
+            "id": 7,
+            "nome": "Bolo",
+            "preco": 45.0,
+            "quantidade": 5
+        },
+        {
+            "id": 8,
+            "nome": "em",
+            "preco": 0.0,
+            "quantidade": 5
         }
     ]
 }

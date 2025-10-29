@@ -37,8 +37,7 @@ void primeiraMsgADM() {
 
 void primeiraMsgUser() {
     falar("Oh! Mais um fan!!! Quer que eu explique como funciona essa belezinha?", 30, 15);
-    falar("Pressione 1 para Sim", 30, 10);
-    falar("Pressione 2 para Nao", 30, 15);
+    falar("Sim (1) ou Nao (2)?", 30, 10);
 }
 
 void interfaceADM(const Caixa& fluxoDeCaixa) {

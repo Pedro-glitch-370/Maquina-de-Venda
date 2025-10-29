@@ -6,6 +6,7 @@
 #include "../inc/pagamentodinheiro.h"
 #include "../inc/pagamentocartao.h"
 #include <iostream>
+#include <limits>
 using namespace std;
 
 int invalidoUmOuDois(int entrada);
@@ -46,12 +47,22 @@ int main() {
         //interface de opcoes para adm
         while (ativo) {
             interfaceADM(fluxoDeCaixa);
-            cin >> resposta;
+
             //entrada invalida
-            while (resposta != 1 and resposta != 2 and resposta != 3 and resposta != 4 and resposta != 0) {
-                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+            //o que ta no ignore descarta o que sobrou do buffer ate encontrar uma \n
+            do {
                 cin >> resposta;
-            }
+
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
+                    resposta = -1;
+                } else if (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0) {
+                    falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                }
+
+            } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0);
 
             switch (resposta) {
                 case 1: {
@@ -67,10 +78,7 @@ int main() {
 
                     //entrada invalida
                     do {
-                        if (Produto::checarProdutoIgual(nome)) {
-                            cout << "Ja existe um produto com o nome " << nome << ".\n";
-                        }
-
+                        falar("Ja existe um produto com esse nome!", 30, 25);
                         falar("Digite outro nome:", 30, 15);
                         cin >> nome;
                     } while (Produto::checarProdutoIgual(nome));
@@ -89,9 +97,10 @@ int main() {
                     cin >> produtoARetirar;
 
                     while (cin.fail()) {
-                        falar("Entrada invalida! Digite novamente!", 30, 15);
+                        falar("Oooops! Entrada invalida! Digite um nome!", 30, 15);
                         cin >> produtoARetirar;
                     }
+
                     Adm::retirarProduto(produtoARetirar);
                     break;
                 }
@@ -105,13 +114,19 @@ int main() {
 
                         bool vendo_fluxo = true;
                         while (vendo_fluxo) {
-                            falar("Deseja adicionar (1), retirar (2) ou retornar (3)?", 30, 15);
-                            cin >> resposta;
-
-                            while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                            do {
+                                falar("Deseja adicionar (1), retirar (2) ou retornar (3)?", 30, 15);
                                 cin >> resposta;
-                            }
+
+                                if (cin.fail()) {
+                                    cin.clear();
+                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                    falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
+                                    resposta = 0; //pra forcar a repeticao
+                                } else if (resposta != 1 && resposta != 2 && resposta != 3) {
+                                    falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                                }
+                            } while (resposta != 1 && resposta != 2 && resposta != 3);
 
                             switch (resposta) {
                                 case 1: {
@@ -134,7 +149,7 @@ int main() {
                                     vendo_fluxo = false;
                                     break;
                                 default:
-                                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
                                     break;
                             }
                         }
@@ -153,7 +168,7 @@ int main() {
                     break;
 
                 default:
-                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
                     break;
             }
 
@@ -272,7 +287,7 @@ int main() {
                                     break;
 
                                 default:
-                                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
                                     break;
                             }
                         }
@@ -284,7 +299,7 @@ int main() {
                     ativo = false;
                     break;
                 default:
-                    cout << "Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!" << endl;
+                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
                     break;
             }
         }
