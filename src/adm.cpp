@@ -58,7 +58,7 @@ void Adm::adicionarProduto(const string &nome, const double preco, const int qnt
     escrita << j.dump(4); //pra pular as linhas e deixar tudo organizadinho
     escrita.close();
 
-    cout << produto.getNome() + " foi adicionado(a) com ID " << id << "|" << endl;
+    cout << produto.getNome() + " foi adicionado(a) com ID " << id << endl;
 }
 
 //metodo para remover um produto existente

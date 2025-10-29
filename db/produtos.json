@@ -11,6 +11,12 @@
             "nome": "Bombom",
             "preco": 4.8,
             "quantidade": 2
+        },
+        {
+            "id": 5,
+            "nome": "Biscoito",
+            "preco": 2.5,
+            "quantidade": 6
         }
     ]
 }

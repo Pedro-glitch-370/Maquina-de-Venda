@@ -1,5 +1,6 @@
 #include "../inc/produtos.h"
 #include "../json/json.hpp"
+#include <iomanip> //para deixar a listagem de produtos bonita
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -43,12 +44,13 @@ int Produto::getQnt() const {
 }
 
 //metodo para mostrar atributos do produto
+//left: alinha o texto pela esquerda; setw: define o tamanho mínimo de largura; fixed: define as casas decimais
 void Produto::mostrarDetalhes() const {
+    cout << left << setw(6) << "ID:" << id
+         << " | " << setw(10) << "Nome:" << nome << endl;
+    cout << left << setw(6) << "Preco:" << fixed << setprecision(2) << preco
+         << " | " << setw(12) << "Quantidade:" << qnt << endl;
     cout << "------------------------------------" << endl;
-    cout << "ID: " << id << "        | Nome: " << nome << endl;
-    cout << "Preco: " << preco << "  | Quantidade: " << qnt << endl;
-    cout << "Pressione qualquer tecla para voltar." << endl;
-    cin.get();
 }
 
 //metodo para retirar um produto do estoque

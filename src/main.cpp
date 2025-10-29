@@ -56,7 +56,7 @@ int main() {
             switch (resposta) {
                 case 1: {
                     //parametros de adicionarProduto
-                    int id, qnt;
+                    int qnt;
                     string nome;
                     double preco;
 
@@ -97,10 +97,7 @@ int main() {
                 }
 
                 case 3:
-                    /*refri.mostrarDetalhes();
-                    cheetos.mostrarDetalhes();
-                    agua.mostrarDetalhes();
-                    fini.mostrarDetalhes();*/
+                    Usuario::listarProdutos();
                     break;
 
                 case 4: {
@@ -225,18 +222,9 @@ int main() {
             }
 
             switch (resposta) {
-                /*case 1:
-                    refri.mostrarDetalhes();
+                case 1:
+                    Usuario::listarProdutos();
                     break;
-                case 2:
-                    cheetos.mostrarDetalhes();
-                    break;
-                case 3:
-                    agua.mostrarDetalhes();
-                    break;
-                case 4:
-                    fini.mostrarDetalhes();
-                    break;*/
                 case 9: {
                         cout << "Seu saldo atual: " << contaUsuario.getSaldo() << "." << endl;
 

@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-class Usuario{
+class Usuario {
     private:
         string login;
         string senha;
@@ -20,6 +20,9 @@ class Usuario{
         //getters
         string getLogin() const;
         string getSenha() const;
+
+        //metodo para ver produtos
+        static void listarProdutos();
 };
 
 #endif //MAQUINA_DE_VENDA_USUARIOS_H
