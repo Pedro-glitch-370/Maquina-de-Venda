@@ -24,15 +24,34 @@ void falar(const string& texto, const int delay_caractere, const int delay_final
     delay(delay_final);
 }
 
-//algumas mensagens
 void mensagemInicial() {
     falar("Bem-vindos, queridos, a maquina de vendas mais glamourosa de todo o subsolo!!", 30, 100);
     falar("Voce eh ADM (1) ou um usuario qualquer (2)?", 30, 15);
 }
 
+int invalidoUmOuDois(int entrada) {
+    while (entrada != 1 and entrada != 2) {
+        falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 30, 15);
+        cin >> entrada;
+    }
+    return entrada;
+}
+
 void primeiraMsgADM() {
     falar("Ohh, um ADM! Um Assistente totalmente Dependente de Mim!!! Eh um prazer ter um de voces aqui!", 30, 100);
     falar("Mas antes, preciso saber se voce nao esta mentindo!!", 30, 15);
+}
+
+void segundaMsgADM(const int seletor) {
+    if (seletor == 1) {
+        falar("Digite seu login:", 30, 15);
+    } else if (seletor == 2) {
+        falar("Digite a senha:", 30, 15);
+    } else if (seletor == 3) {
+        falar("Eh voce mesmo!! Bom te ver de novo!", 30, 15);
+    } else if (seletor == 4) {
+        falar("Senha errada, darling! Digite novamente!", 15, 15);
+    }
 }
 
 void primeiraMsgUser() {
@@ -76,3 +95,49 @@ void explicar2() {
     falar("Hunf, ta bom.", 30, 35);
     falar("E quanto de ouro voce vai gastar agora, meu bem?", 30, 15);
 }
+
+void invalido(const int seletor) {
+    if (seletor == 1) {
+        falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
+    } else if (seletor == 2) {
+        falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+    } else if (seletor == 3) {
+        falar("Oooops! Entrada invalida! Digite um NOME!", 30, 15);
+    } else if (seletor == 4) {
+        falar("Oooops! Saldo invalido! Digite novamente!", 30, 15);
+    } else if (seletor == 5) {
+        falar("Oooops! Entrada invalida! Digite um NUMERO!", 30, 15);
+    }
+}
+
+void msgAddProduto(const int seletor) {
+    if (seletor == 1) {
+        falar("Uhh, novo produto! Me diga tudo sobre ele!", 30, 15);
+        falar("Digite o nome:", 30, 15);
+    } else if (seletor == 2) {
+        falar("Digite o preco:", 30, 15);
+    } else if (seletor == 3) {
+        falar("Digite a quantidade:", 30, 15);
+    } else if (seletor == 4) {
+        falar("Ja existe um produto com esse nome!", 30, 25);
+        falar("Digite outro nome:", 30, 15);
+    }
+}
+
+void msgTirarProduto() {
+    falar("Ahhh... vai tirar um? Que pena...", 30, 15);
+    falar("Digite o nome do produto a ser retirado:", 30, 15);
+}
+
+void msgAddOuro() { falar("Quanto de ouro voce deseja adicionar?", 30, 15); }
+
+void msgTirarOuro() { falar("Quanto de ouro voce deseja retirar?", 30, 15); }
+
+void msgComprarProduto() {
+    falar("Enfim, as compras! Qual produto voce deseja?", 30, 15);
+    falar("Se quiser retornar, escreva Voltar!", 30, 15);
+}
+
+void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15); }
+
+void ateMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }

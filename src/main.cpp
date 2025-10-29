@@ -7,8 +7,6 @@
 #include <limits>
 using namespace std;
 
-int invalidoUmOuDois(int entrada);
-
 int main() {
     //valores fixos (por ora)
     Caixa fluxoDeCaixa(0);
@@ -24,20 +22,20 @@ int main() {
         //cadastro
         primeiraMsgADM();
         string login, senha;
-        falar("Digite seu login:", 30, 15);
+        segundaMsgADM(1);
         cin >> login;
-        falar("Digite a senha:", 30, 15);
+        segundaMsgADM(2);
         cin >> senha;
 
         //entrada invalida (a senha eh aa)
         while (senha != fluxoDeCaixa.getSenha()) {
-            falar("Senha errada, darling! Digite novamente!", 15, 15);
+            segundaMsgADM(4);
             cin >> senha;
         }
 
         //entrada valida confirmada
         Adm adm(login, senha);
-        falar("Eh voce mesmo!! Bom te ver de novo!", 30, 15);
+        segundaMsgADM(3);
 
         int resposta;
         bool ativo = true;
@@ -54,10 +52,10 @@ int main() {
                 if (cin.fail()) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
+                    invalido(1);
                     resposta = -1;
                 } else if (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0) {
-                    falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                    invalido(2);
                 }
 
             } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0);
@@ -70,21 +68,19 @@ int main() {
                     double preco;
 
                     //passagem de dados
-                    falar("Uhh, novo produto! Me diga tudo sobre ele!", 30, 15);
-                    falar("Digite o nome:", 30, 15);
+                    msgAddProduto(1);
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     getline(cin, nome);
 
                     //entrada invalida
                     do {
-                        falar("Ja existe um produto com esse nome!", 30, 25);
-                        falar("Digite outro nome:", 30, 15);
+                        msgAddProduto(4);
                         getline(cin, nome);
                     } while (Produto::checarProdutoIgual(nome));
 
-                    falar("Digite o preco:", 30, 15);
+                    msgAddProduto(2);
                     cin >> preco;
-                    falar("Digite a quantidade:", 30, 15);
+                    msgAddProduto(3);
                     cin >> qnt;
                     Adm::adicionarProduto(nome, preco, qnt);
                     break;
@@ -92,14 +88,13 @@ int main() {
 
                 case 2: {
                     //paramentro de retirarProduto
-                    falar("Ahhh... vai tirar um? Que pena...", 30, 15);
-                    falar("Digite o nome do produto a ser retirado:", 30, 15);
+                    msgTirarProduto();
                     string produtoARetirar;
                     cin >> produtoARetirar;
 
                     //entrada invalida
                     while (cin.fail()) {
-                        falar("Oooops! Entrada invalida! Digite um NOME!", 30, 15);
+                        invalido(3);
                         cin >> produtoARetirar;
                     }
 
@@ -117,27 +112,27 @@ int main() {
                         bool vendo_fluxo = true;
                         while (vendo_fluxo) {
                             do {
-                                falar("Deseja adicionar (1), retirar (2) ou retornar (3)?", 30, 15);
+                                falar("Deseja adicionar ao fluxo (1), retirar (2) ou retornar (3)?", 30, 15);
                                 cin >> resposta;
 
                                 if (cin.fail()) {
                                     cin.clear();
                                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                    falar("Oooops! Entrada invalida! Digite um numero inteiro!", 30, 15);
+                                    invalido(1);
                                     resposta = 0; //pra forcar a repeticao
                                 } else if (resposta != 1 && resposta != 2 && resposta != 3) {
-                                    falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                                    invalido(2);
                                 }
                             } while (resposta != 1 && resposta != 2 && resposta != 3);
 
                             switch (resposta) {
                                 case 1: {
                                     double adicao;
-                                    falar("Quanto voce deseja adicionar?", 30, 15);
+                                    msgAddOuro();
                                     cin >> adicao;
 
                                     while (adicao <= 0) {
-                                        falar("Oooops! Saldo invalido! Digite novamente!", 30, 15);
+                                        invalido(4);
                                     }
 
                                     fluxoDeCaixa.adicionarSaldo(adicao);
@@ -146,7 +141,7 @@ int main() {
                                 }
                                 case 2: {
                                     double remocao;
-                                    falar("Quanto voce deseja retirar?", 30, 15);
+                                    msgTirarOuro();
                                     cin >> remocao;
                                     fluxoDeCaixa.subtrairSaldo(remocao);
                                     fluxoDeCaixa.mostrarFluxoCaixa();
@@ -156,7 +151,7 @@ int main() {
                                     vendo_fluxo = false;
                                     break;
                                 default:
-                                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
+                                    msgDefault();
                                     break;
                             }
                         }
@@ -170,12 +165,12 @@ int main() {
                 }*/
 
                 case 0:
-                    falar("Ate a proxima, darling! Nao mude de canal!", 30, 15);
+                    ateMais();
                     ativo = false;
                     break;
 
                 default:
-                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
+                    msgDefault();
                     break;
             }
 
@@ -203,7 +198,7 @@ int main() {
         while (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            falar("Oooops! Entrada invalida! Digite um numero!", 30, 15);
+            invalido(5);
         }
 
         //interface de opcoes para usuario
@@ -218,7 +213,7 @@ int main() {
 
             //entrada invalida
             while (resposta != 1 and resposta != 2 and resposta != 9 and resposta != 0) {
-                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                invalido(2);
                 cin >> resposta;
             }
 
@@ -228,8 +223,7 @@ int main() {
                     break;
 
                 case 2: {
-                    falar("Enfim, as compras! Qual produto voce deseja?", 30, 15);
-                    falar("Se quiser retornar, escreva Voltar!", 30, 15);
+                    msgComprarProduto();
 
                     string nomeProduto;
                     getline(cin >> ws, nomeProduto);
@@ -254,13 +248,13 @@ int main() {
                             cin >> resposta;
 
                             while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
+                                invalido(2);
                                 cin >> resposta;
                             }
 
                             switch (resposta) {
                                 case 1: {
-                                    falar("Quanto de ouro voce deseja adicionar?", 30, 15);
+                                    msgAddOuro();
                                     double adicao;
                                     cin >> adicao;
                                     contaUsuario.adicionarSaldo(adicao);
@@ -270,7 +264,7 @@ int main() {
 
                                 case 2: {
                                     double remocao;
-                                    falar("Quanto de ouro voce deseja retirar?", 30, 15);
+                                    msgTirarOuro();
                                     cin >> remocao;
                                     contaUsuario.subtrairSaldo(remocao);
                                     contaUsuario.mostrarSaldoConta();
@@ -282,7 +276,7 @@ int main() {
                                     break;
 
                                 default:
-                                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
+                                    msgDefault();
                                     break;
                             }
                         }
@@ -290,23 +284,15 @@ int main() {
                     }
 
                 case 0:
-                    falar("Ate a proxima, darling! Nao mude de canal!", 30, 15);
+                    ateMais();
                     ativo = false;
                     break;
 
                 default:
-                    falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
+                    msgDefault();
                     break;
             }
         }
     }
     return 0;
-}
-
-int invalidoUmOuDois(int entrada) {
-    while (entrada != 1 and entrada != 2) {
-        falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 30, 15);
-        cin >> entrada;
-    }
-    return entrada;
 }
