@@ -36,7 +36,7 @@ int main() {
         cin >> senha;
 
         //entrada invalida
-        while (senha != fluxoDeCaixa.getSenha()) {
+        while (senha != "aa") {
             falar("Senha errada, darling! Digite novamente!", 15, 15);
             cin >> senha;
         }
@@ -52,7 +52,6 @@ int main() {
         while (ativo) {
             interfaceADM(fluxoDeCaixa);
             cin >> resposta;
-
             //entrada invalida
             while (resposta != 1 and resposta != 2 and resposta != 3 and resposta != 4 and resposta != 0) {
                 falar("Oooops! Numero invalido! Digite novamente!", 30, 15);

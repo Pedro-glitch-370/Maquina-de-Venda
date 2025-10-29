@@ -1,0 +1,28 @@
+{
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Refri",
+            "preco": 5.0,
+            "quantidade": 6
+        },
+        {
+            "id": 2,
+            "nome": "Cheetos",
+            "preco": 6.75,
+            "quantidade": 6
+        },
+        {
+            "id": 3,
+            "nome": "Agua",
+            "preco": 2.35,
+            "quantidade": 6
+        },
+        {
+            "id": 4,
+            "nome": "Fini",
+            "preco": 2.35,
+            "quantidade": 6
+        }
+    ]
+}

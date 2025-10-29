@@ -14,6 +14,9 @@ add_executable(maquina_venda src/main.cpp
         src/pagamentocartao.cpp
         src/pagamentodinheiro.cpp
         src/pagamento.cpp
+        json/json.hpp
+        json/json.hpp
+        json/json.hpp
 )
 
 target_link_libraries(maquina_venda winmm)
