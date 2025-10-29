@@ -74,13 +74,14 @@ int main() {
                     //passagem de dados
                     falar("Uhh, novo produto! Me diga tudo sobre ele!", 30, 15);
                     falar("Digite o nome:", 30, 15);
-                    cin >> nome;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, nome);
 
                     //entrada invalida
                     do {
                         falar("Ja existe um produto com esse nome!", 30, 25);
                         falar("Digite outro nome:", 30, 15);
-                        cin >> nome;
+                        getline(cin, nome);
                     } while (Produto::checarProdutoIgual(nome));
 
                     falar("Digite o preco:", 30, 15);
@@ -92,12 +93,15 @@ int main() {
                 }
 
                 case 2: {
+                    //paramentro de retirarProduto
                     falar("Ahhh... vai tirar um? Que pena...", 30, 15);
+                    falar("Digite o nome do produto a ser retirado:", 30, 15);
                     string produtoARetirar;
                     cin >> produtoARetirar;
 
+                    //entrada invalida
                     while (cin.fail()) {
-                        falar("Oooops! Entrada invalida! Digite um nome!", 30, 15);
+                        falar("Oooops! Entrada invalida! Digite um NOME!", 30, 15);
                         cin >> produtoARetirar;
                     }
 
@@ -110,7 +114,7 @@ int main() {
                     break;
 
                 case 4: {
-                        cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
+                        fluxoDeCaixa.mostrarFluxoCaixa();
 
                         bool vendo_fluxo = true;
                         while (vendo_fluxo) {
@@ -134,7 +138,7 @@ int main() {
                                     falar("Quanto voce deseja adicionar?", 30, 15);
                                     cin >> adicao;
                                     fluxoDeCaixa.adicionarSaldo(adicao);
-                                    cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
+                                    fluxoDeCaixa.mostrarFluxoCaixa();
                                     break;
                                 }
                                 case 2: {
@@ -142,7 +146,7 @@ int main() {
                                     falar("Quanto voce deseja retirar?", 30, 15);
                                     cin >> remocao;
                                     fluxoDeCaixa.subtrairSaldo(remocao);
-                                    cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
+                                    fluxoDeCaixa.mostrarFluxoCaixa();
                                     break;
                                 }
                                 case 3:
@@ -174,6 +178,8 @@ int main() {
 
         }
 
+    // =================================================================================================================
+
     } else if (tipoUsuario == 2) {
         //explicacao inicial para o usuario
         int explicar;
@@ -188,40 +194,18 @@ int main() {
             explicar2();
         }
 
-        //selecao entre formas de pagamento
-        int formaInserir;
-        cin >> formaInserir;
-        formaInserir = invalidoUmOuDois(formaInserir);
-        double valorInicial = 0.0;
+        double valorInicial;
+        cin >> valorInicial;
 
-        //inserir saldo inicial
-        if (formaInserir == 1) {
-            pagarComOuro();
-            cin >> valorInicial;
-
-            PagamentoDinheiro pagOuro;
-            pagOuro.inserirDinheiro(valorInicial);
-
-        } else if (formaInserir == 2) {
-            falar("Ooohhh! Voce tem um MettaCard?! Abalou!! Vamos estourar o cartao entao!", 30, 15);
-
-            falar("Digite o numero do cartao:", 30, 15);
-            int numeroCartao;
-            cin >> numeroCartao;
-
-            falar("Digite o nome do titular:", 30, 15);
-            string nomeTitular;
-            cin >> nomeTitular;
-
-            falar("Tudo cadastrado! Agora, digite a quantidade de saldo a ser inserida:", 30, 15);
-            cin >> valorInicial;
-
-            PagamentoCartao pagCartao(numeroCartao, nomeTitular);
-            pagCartao.inserirDinheiro(valorInicial);
+        while (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            falar("Oooops! Entrada invalida! Digite um numero!", 30, 15);
         }
 
         //interface de opcoes para usuario
         Conta contaUsuario(valorInicial);
+        contaUsuario.adicionarSaldo(valorInicial);
         int resposta;
         bool ativo = true;
 
@@ -230,8 +214,7 @@ int main() {
             cin >> resposta;
 
             //entrada invalida
-            while (resposta != 1 and resposta != 2 and resposta != 3
-                and resposta != 4 and resposta != 9 and resposta != 0) {
+            while (resposta != 1 and resposta != 2 and resposta != 9 and resposta != 0) {
                 falar("Oooops! Numero invalido! Digite novamente!", 30, 15);
                 cin >> resposta;
             }
@@ -241,7 +224,7 @@ int main() {
                     Usuario::listarProdutos();
                     break;
                 case 9: {
-                        cout << "Seu saldo atual: " << contaUsuario.getSaldo() << "." << endl;
+                        contaUsuario.mostrarSaldoConta();
 
                         bool vendo_saldo = true;
                         while (vendo_saldo) {
@@ -255,30 +238,20 @@ int main() {
 
                             switch (resposta) {
                                 case 1: {
-                                    formaPagamento();
-                                    int novaFormaInserir;
-                                    cin >> novaFormaInserir;
-                                    novaFormaInserir = invalidoUmOuDois(novaFormaInserir);
-                                    double adicao = 0.0;
-
-                                    if (novaFormaInserir == 1) {
-                                        pagarComOuro();
-                                        cin >> adicao;
-                                    } else if (novaFormaInserir == 2) {
-                                        cin >> adicao;
-                                    }
-
+                                    falar("Quanto de ouro voce deseja adicionar?", 30, 15);
+                                    double adicao;
+                                    cin >> adicao;
                                     contaUsuario.adicionarSaldo(adicao);
-                                    cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
+                                    contaUsuario.mostrarSaldoConta();
                                     break;
                                 }
 
                                 case 2: {
                                     double remocao;
-                                    falar("Quanto voce deseja retirar?", 30, 15);
+                                    falar("Quanto de ouro voce deseja retirar?", 30, 15);
                                     cin >> remocao;
                                     contaUsuario.subtrairSaldo(remocao);
-                                    cout << "Seu saldo atual: " << contaUsuario.getSaldo() << endl;
+                                    contaUsuario.mostrarSaldoConta();
                                     break;
                                 }
 

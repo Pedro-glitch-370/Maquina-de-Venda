@@ -87,7 +87,7 @@ void Adm::retirarProduto(const string &nome) {
         for (const auto& produto : j["produtos"]) {
             if (produto["nome"] == nome) {
                 encontrado = true;
-                cout << "Produto \"" << nome << "\" removido com sucesso!" << endl;
+                cout << "Produto " << nome << " removido com sucesso!" << endl;
                 continue; //para pular esse produto
             }
             novosProdutos.push_back(produto); //push_back adiciona objetos em um array
@@ -95,7 +95,7 @@ void Adm::retirarProduto(const string &nome) {
 
         //se o produto nao for encontrado
         if (!encontrado) {
-            cout << "Produto com ID " << nome << " não encontrado." << endl;
+            cout << "Produto " << nome << " nao encontrado." << endl;
             return;
         }
 
@@ -110,6 +110,6 @@ void Adm::retirarProduto(const string &nome) {
             cout << "Erro ao salvar o arquivo de produtos." << endl;
         }
     } else {
-        cout << "Formato inválido no arquivo JSON." << endl;
+        cout << "Formato invalido no arquivo JSON." << endl;
     }
 }

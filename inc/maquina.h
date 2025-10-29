@@ -5,24 +5,27 @@
 using namespace std;
 
 class Maquina {
-    private:
-        // fazer um JSON com os produtos
-        double saldo;
-    public:
-        //construtor
-        explicit Maquina(double d_saldo);
+protected:
+    // fazer um JSON com os produtos
+    double saldo;
+public:
+    //construtor
+    explicit Maquina(double d_saldo);
 
-        //setter
-        void setSaldo();
+    //setter
+    void setSaldo();
 
-        //getter
-        double getSaldo() const;
+    //getter virtual
+    virtual double getSaldo() = 0;
 
-        //metodo para adicionar quantia ao saldo
-        void adicionarSaldo(double adicao);
+    //metodo virtual para adicionar quantia ao saldo
+    virtual void adicionarSaldo(double) = 0;
 
-        //metodo para remover quantia do saldo
-        void subtrairSaldo(double remocao);
+    //metodo virtual para remover quantia do saldo
+    virtual void subtrairSaldo(double) = 0;
+
+    //destrutor
+    virtual ~Maquina() = default;
 };
 
 #endif //MAQUINA_DE_VENDA_MAQUINA_H

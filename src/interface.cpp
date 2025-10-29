@@ -1,10 +1,10 @@
 #include "../inc/interface.h"
 #include "../inc/caixa.h"
+#include "../inc/conta.h"
 #include <iostream>
 #include <thread> //pro delay dos caracteres
 #include <chrono> //pro delay dos caracteres
 #include <string>
-
 using namespace std;
 
 void delay(const int milissegundos) {
@@ -26,7 +26,7 @@ void falar(const string& texto, const int delay_caractere, const int delay_final
 
 //algumas mensagens
 void mensagemInicial() {
-    falar("Bem-vindos, queridas, a maquina de vendas mais glamourosa de todo o subsolo!!", 30, 100);
+    falar("Bem-vindos, queridos, a maquina de vendas mais glamourosa de todo o subsolo!!", 30, 100);
     falar("Voce eh ADM (1) ou um usuario qualquer (2)?", 30, 15);
 }
 
@@ -40,7 +40,7 @@ void primeiraMsgUser() {
     falar("Sim (1) ou Nao (2)?", 30, 10);
 }
 
-void interfaceADM(const Caixa& fluxoDeCaixa) {
+void interfaceADM(Caixa& fluxoDeCaixa) {
     cout << "------------------------------------" << endl;
     falar("O que deseja fazer, estrela?", 30, 15);
     cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
@@ -54,53 +54,25 @@ void interfaceADM(const Caixa& fluxoDeCaixa) {
     cout << "------------------------------------" << endl;
 }
 
-void interfaceUser(const Conta& contaUsuario) {
+void interfaceUser(Conta& contaUsuario) {
     cout << "------------------------------------" << endl;
     falar("O que deseja fazer agora, estrela?", 30, 15);
     cout << "Saldo atual: " << contaUsuario.getSaldo() << endl;
     cout << "Pressione 1 pra ver nossos produtos" << endl;
+    cout << "Pressione 2 para comprar um produto" << endl;
     cout << "------------------------------------" << endl;
     cout << "Pressione 9 pra acessar o saldo" << endl;
     cout << "Pressione 0 pra sair" << endl;
     cout << "------------------------------------" << endl;
 }
 
-void formaPagamento() {
-    falar("Pressione 1 pra inserir com ouro", 30, 15);
-    falar("Pressione 2 pra inserir via cartao", 30, 15);
-}
-
-void pagarComOuro() {
-    falar("Eh sempre bom ter umas moedinhas no bolso!", 30, 15);
-    falar("Digite a quantidade de ouro a ser inserida:", 30, 15);
-}
-
-/*void pagarComCartao() {
-    falar("Ooohhh! Voce tem um MettaCard?! Abalou!! Vamos estourar o cartao entao!", 30, 15);
-
-    falar("Digite o numero do cartao:", 30, 15);
-    int numeroCartao;
-    cin >> numeroCartao;
-
-    falar("Digite o nome do titular:", 30, 15);
-    string nomeTitular;
-    cin >> nomeTitular;
-
-    falar("Tudo cadastrado! Agora, digite a quantidade de saldo a ser inserida:", 30, 15);
-    cin >> valorInicial;
-
-    PagamentoCartao pagCartao(numeroCartao, nomeTitular);
-}*/
-
 void explicar1() {
     falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", 30, 15);
     falar("E nao se preocupe se restar algum valor aqui dentro. Tenho ouro suficiente no caixa para qualquer troco!", 30, 45);
-    falar("Agora, diga de que forma voce vai inserir seu saldo inicial:", 30, 15);
-    formaPagamento();
+    falar("Agora, insira a quantidade de ouro que voce vai gastar!", 30, 15);
 }
 
 void explicar2() {
-    falar("Hunf, ta bom.", 30, 30);
-    falar("Pressione 1 pra inserir saldo inicial com ouro", 30, 15);
-    falar("Pressione 2 pra inserir saldo inicial via cartao", 30, 15);
+    falar("Hunf, ta bom.", 30, 35);
+    falar("E quanto de ouro voce vai gastar agora, meu bem?", 30, 15);
 }
