@@ -11,9 +11,6 @@ add_executable(maquina_venda src/main.cpp
         src/interface.cpp
         src/conta.cpp
         src/caixa.cpp
-        src/pagamentocartao.cpp
-        src/pagamentodinheiro.cpp
-        src/pagamento.cpp
         json/json.hpp
         json/json.hpp
         json/json.hpp

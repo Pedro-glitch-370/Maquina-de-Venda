@@ -3,8 +3,6 @@
 #include "../inc/caixa.h"
 #include "../inc/interface.h"
 #include "../inc/adm.h"
-#include "../inc/pagamentodinheiro.h"
-#include "../inc/pagamentocartao.h"
 #include <iostream>
 #include <limits>
 using namespace std;
@@ -137,6 +135,11 @@ int main() {
                                     double adicao;
                                     falar("Quanto voce deseja adicionar?", 30, 15);
                                     cin >> adicao;
+
+                                    while (adicao <= 0) {
+                                        falar("Oooops! Saldo invalido! Digite novamente!", 30, 15);
+                                    }
+
                                     fluxoDeCaixa.adicionarSaldo(adicao);
                                     fluxoDeCaixa.mostrarFluxoCaixa();
                                     break;
@@ -223,6 +226,25 @@ int main() {
                 case 1:
                     Usuario::listarProdutos();
                     break;
+
+                case 2: {
+                    falar("Enfim, as compras! Qual produto voce deseja?", 30, 15);
+                    falar("Se quiser retornar, escreva Voltar!", 30, 15);
+
+                    string nomeProduto;
+                    getline(cin >> ws, nomeProduto);
+
+                    if (nomeProduto == "Voltar") {
+                        break;
+                    }
+
+                    //a compra aqui ocorre ja na condicao do if
+                    if (Produto::comprarProduto(nomeProduto, contaUsuario)) {
+                        Produto::tirarSeEsgotado(nomeProduto);
+                    }
+                    break;
+                }
+
                 case 9: {
                         contaUsuario.mostrarSaldoConta();
 
@@ -271,6 +293,7 @@ int main() {
                     falar("Ate a proxima, darling! Nao mude de canal!", 30, 15);
                     ativo = false;
                     break;
+
                 default:
                     falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15);
                     break;

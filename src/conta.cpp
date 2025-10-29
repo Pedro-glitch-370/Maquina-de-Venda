@@ -21,6 +21,7 @@ double Conta::getSaldo() {
 
 //metodo para adicionar valor ao saldo do cliente
 void Conta::adicionarSaldo(const double adicao) {
+
     ifstream leitura("../db/fluxoCaixa.json");
     json j;
     leitura >> j;
@@ -39,18 +40,29 @@ void Conta::adicionarSaldo(const double adicao) {
 
 //metodo para retirar valor do saldo do cliente
 void Conta::subtrairSaldo(const double remocao) {
-    cout << "Ainda nao implementado!\n";
+
+    ifstream leitura("../db/fluxoCaixa.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    double saldoAtual = j["cliente"]["Valor Cliente"];
+
+    if (remocao > saldoAtual) {
+        cout << "Saldo insuficiente para realizar a compra!" << endl;
+        return;
+    }
+
+    j["cliente"]["Valor Cliente"] = saldoAtual - remocao;
+
+    ofstream escrita("../db/fluxoCaixa.json");
+    escrita << j.dump(4);
+    escrita.close();
+
+    saldo = saldoAtual - remocao;
 }
 
 //metodo para mostrar a quantia do usuario
 void Conta::mostrarSaldoConta() {
     cout << "Seu Saldo atual: " << getSaldo() << " G" << endl;
-}
-
-//metodo para o usuario poder comprar um produto existente
-void Conta::comprarProduto(Produto& produto) {
-    if (produto.reduzirEstoque()) {
-        const double remocao = produto.getPreco();
-        subtrairSaldo(remocao);
-    }
 }

@@ -2,7 +2,6 @@
 #define MAQUINA_DE_VENDA_INTERFACE_H
 #include "../inc/caixa.h"
 #include "../inc/conta.h"
-#include "../inc/pagamentocartao.h"
 #include <string>
 #include <iostream>
 using namespace std;
