@@ -284,7 +284,7 @@ int main() {
                     }
 
                 case 0:
-                    msgDevolverSaldo(contaUsuario.devolverSaldoConta());
+                    msgDevolverSaldo(contaUsuario);
                     msgAteMais();
                     ativo = false;
                     break;

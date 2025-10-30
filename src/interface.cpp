@@ -76,7 +76,7 @@ void interfaceADM(Caixa& fluxoDeCaixa) {
 void interfaceUser(Conta& contaUsuario) {
     cout << "------------------------------------" << endl;
     falar("O que deseja fazer agora, estrela?", 30, 15);
-    cout << "Saldo atual: " << contaUsuario.getSaldo() << endl;
+    cout << "Saldo atual: " << contaUsuario.getSaldo() << " G" << endl;
     cout << "Pressione 1 pra ver nossos produtos" << endl;
     cout << "Pressione 2 para comprar um produto" << endl;
     cout << "------------------------------------" << endl;
@@ -148,10 +148,10 @@ void msgComprarProduto() {
 
 void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15); }
 
-void msgDevolverSaldo(const double saldoCliente) {
-    if (saldoCliente > 0) {
+void msgDevolverSaldo(Conta &contaUsuario) {
+    if (const double saldoCliente = contaUsuario.devolverSaldoConta(); saldoCliente > 0) {
         falar("Ja vai? Ah... Tome de volta seu ouro!", 30, 15);
-        cout << "Foram devolvidos" << saldoCliente << " G!" << endl;
+        cout << "Foram devolvidos " << saldoCliente << " G!" << endl;
     } else {
         falar("Vejo aqui que voce torrou toda sua grana! Que nunca nos falte o superfluo, nao eh mesmo?", 30, 15);
     }

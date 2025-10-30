@@ -15,8 +15,8 @@ int invalidoUmOuDois(int entrada);
 void primeiraMsgADM();
 void segundaMsgADM(int seletor);
 void primeiraMsgUser();
-void interfaceADM(Caixa& fluxoDeCaixa);
-void interfaceUser(Conta& contaUsuario);
+void interfaceADM(Caixa &fluxoDeCaixa);
+void interfaceUser(Conta &contaUsuario);
 void msgExplicar1();
 void msgExplicar2();
 void msgInvalido(int seletor);
@@ -27,7 +27,7 @@ void msgAddOuro();
 void msgTirarOuro();
 void msgComprarProduto();
 void msgDefault();
-void msgDevolverSaldo(double saldoCliente = Conta::devolverSaldoConta());
+void msgDevolverSaldo(Conta &contaUsuario);
 void msgAteMais();
 
 #endif //MAQUINA_DE_VENDA_INTERFACE_H
