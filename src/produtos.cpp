@@ -7,13 +7,9 @@ using namespace std;
 using json = nlohmann::json;
 
 //construtor
-Produto::Produto(const int id, const string &nome, const double preco, const int qnt) : id(id), nome(nome), preco(preco), qnt(qnt) {}
+Produto::Produto(const string &nome, const double preco, const int qnt) : nome(nome), preco(preco), qnt(qnt) {}
 
 //setters
-void Produto::setId() {
-    this->id = id;
-}
-
 void Produto::setNome() {
     this->nome = nome;
 }
@@ -27,10 +23,6 @@ void Produto::setQnt() {
 }
 
 //getters
-int Produto::getId() const {
-    return id;
-}
-
 string Produto::getNome() const {
     return nome;
 }
@@ -46,11 +38,10 @@ int Produto::getQnt() const {
 //metodo para mostrar atributos do produto
 //left: alinha o texto pela esquerda; setw: define o tamanho mínimo de largura; fixed: define as casas decimais
 void Produto::mostrarDetalhes() const {
-    cout << left << setw(6) << "ID:" << id
-         << " | " << setw(10) << "Nome:" << nome << endl;
-    cout << left << setw(6) << "Preco:" << fixed << setprecision(2) << preco
-         << " | " << setw(12) << "Quantidade:" << qnt << endl;
-    cout << "------------------------------------" << endl;
+    cout << "Produto: " << setw(35) << left << nome << endl;
+    cout << "Preco: " << fixed << setprecision(2) << preco << " G"
+         << "   Estoque: " << setw(5) << qnt << endl;
+    cout << "==============================================" << endl;
 }
 
 //metodo para comprar um produto
@@ -173,11 +164,10 @@ void Produto::listarProdutos() {
     }
 
     //a listagem propriamente dita
-    cout << "\n=== Produtos Disponiveis ===\n" << endl;
+    cout << "\n============ Produtos Disponiveis ============" << endl;
 
     for (const auto& item : j["produtos"]) {
         Produto produto(
-            item["id"],
             item["nome"],
             item["preco"],
             item["quantidade"]
@@ -186,5 +176,5 @@ void Produto::listarProdutos() {
     }
 
     //size() retorna o numero de elementos do json
-    cout << "\nTotal de produtos: " << j["produtos"].size() << endl;
+    cout << "Total de produtos: " << j["produtos"].size() << endl;
 }

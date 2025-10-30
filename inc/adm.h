@@ -17,9 +17,6 @@ class Adm {
         //getter
         string getLogin() const;
 
-        //metodo para manter os ID's dos produtos organizados
-        static int gerarNovoId();
-
         //metodo para criar um produto e adicionar
         static void adicionarProduto(const string &nome, double preco, int qnt);
 

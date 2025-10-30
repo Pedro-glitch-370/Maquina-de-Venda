@@ -7,23 +7,20 @@ using namespace std;
 
 class Produto {
     private:
-        int id;
         string nome;
         double preco;
         int qnt;
 
     public:
         //construtor
-        Produto(int id, const string &nome, double preco, int qnt);
+        Produto(const string &nome, double preco, int qnt);
 
         //setters
-        void setId();
         void setNome();
         void setPreco();
         void setQnt();
 
         //getters
-        int getId() const;
         string getNome() const;
         double getPreco() const;
         int getQnt() const;

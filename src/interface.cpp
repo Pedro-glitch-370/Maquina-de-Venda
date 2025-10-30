@@ -83,7 +83,7 @@ void interfaceUser(Conta& contaUsuario) {
     falar("O que deseja fazer agora, estrela?", 30, 15);
     cout << "Saldo atual: " << contaUsuario.getSaldo() << " G" << endl;
     cout << "Pressione 1 pra ver nossos produtos" << endl;
-    cout << "Pressione 2 para comprar um produto" << endl;
+    cout << "Pressione 2 pra comprar um produto" << endl;
     cout << "------------------------------------" << endl;
     cout << "Pressione 9 pra acessar o seu saldo" << endl;
     cout << "Pressione 0 pra sair" << endl;

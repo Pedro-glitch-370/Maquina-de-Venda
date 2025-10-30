@@ -20,27 +20,6 @@ string Adm::getLogin() const {
     return login;
 }
 
-//metodo para manter os ID's dos produtos organizados
-int Adm::gerarNovoId() {
-    int ultimoId = 0;
-    ifstream leitura("../db/id_contador.txt");
-
-    if (leitura.is_open()) {
-        leitura >> ultimoId;
-        leitura.close();
-    }
-
-    int novoId = ultimoId + 1;
-
-    ofstream escrita("../db/id_contador.txt");
-    if (escrita.is_open()) {
-        escrita << novoId;
-        escrita.close();
-    }
-
-    return novoId;
-}
-
 //metodo para criar um produto e adicionar
 void Adm::adicionarProduto(const string &nome, const double preco, const int qnt) {
     //cria um var do tipo ifstream que vai ler e guardar o que tá no arquivo
@@ -52,12 +31,10 @@ void Adm::adicionarProduto(const string &nome, const double preco, const int qnt
     }
     leitura.close();
 
-    int id = gerarNovoId();
-    Produto produto(id, nome, preco, qnt);
+    Produto produto(nome, preco, qnt);
 
     //adiciona o novo produto em na variavel json
     j["produtos"].push_back({
-        {"id", id},
         {"nome", nome},
         {"preco",preco},
         {"quantidade", qnt}
@@ -68,7 +45,7 @@ void Adm::adicionarProduto(const string &nome, const double preco, const int qnt
     escrita << j.dump(4); //pra pular as linhas e deixar tudo organizadinho
     escrita.close();
 
-    cout << produto.getNome() + " foi adicionado(a) com ID " << id << endl;
+    cout << produto.getNome() + " foi adicionado(a)!" << endl;
 }
 
 //metodo para remover um produto existente
