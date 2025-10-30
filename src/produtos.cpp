@@ -54,7 +54,7 @@ void Produto::mostrarDetalhes() const {
 }
 
 //metodo para comprar um produto
-bool Produto::comprarProduto(string &nomeProduto, Conta &contaUsuario) {
+bool Produto::comprarProduto(string &nomeProduto, Conta &contaUsuario, Caixa &fluxoDeCaixa) {
 
     ifstream leitura("../db/produtos.json");
     json j;
@@ -91,8 +91,9 @@ bool Produto::comprarProduto(string &nomeProduto, Conta &contaUsuario) {
             escrita << j.dump(4);
             escrita.close();
 
-            //atualiza o saldo de conta do cliente
+            //atualiza o saldo de conta do cliente e o saldo do fluxo de caixa
             contaUsuario.subtrairSaldo(preco);
+            fluxoDeCaixa.adicionarSaldo(preco);
 
             //caso chegue ate aqui, deu tudo certo
             cout << "Compra de " << nomeProduto << " feita com sucesso!!!" << endl;

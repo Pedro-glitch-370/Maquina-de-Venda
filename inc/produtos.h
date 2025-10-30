@@ -1,6 +1,7 @@
 #ifndef MAQUINA_DE_VENDA_PRODUTOS_H
 #define MAQUINA_DE_VENDA_PRODUTOS_H
-#include "conta.h"
+#include "../inc/conta.h"
+#include "../inc/caixa.h"
 #include <iostream>
 using namespace std;
 
@@ -31,7 +32,7 @@ class Produto {
         void mostrarDetalhes() const;
 
         //metodo para comprar um produto
-        static bool comprarProduto(string &nomeProduto, Conta &contaUsuario);
+        static bool comprarProduto(string &nomeProduto, Conta &contaUsuario, Caixa &fluxoDeCaixa);
 
         //metodo para checar se a quantidade de um produto chegou a 0
         static void tirarSeEsgotado(string &nomeProduto);

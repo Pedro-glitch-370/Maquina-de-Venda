@@ -233,7 +233,7 @@ int main() {
                     }
 
                     //a compra aqui ocorre ja na condicao do if
-                    if (Produto::comprarProduto(nomeProduto, contaUsuario)) {
+                    if (Produto::comprarProduto(nomeProduto, contaUsuario, fluxoDeCaixa)) {
                         Produto::tirarSeEsgotado(nomeProduto);
                     }
                     break;
