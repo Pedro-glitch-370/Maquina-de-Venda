@@ -27,6 +27,7 @@ void msgAddOuro();
 void msgTirarOuro();
 void msgComprarProduto();
 void msgDefault();
+void msgDevolverSaldo(double saldoCliente = Conta::devolverSaldoConta());
 void msgAteMais();
 
 #endif //MAQUINA_DE_VENDA_INTERFACE_H

@@ -71,9 +71,7 @@ void Caixa::subtrairSaldo(const double remocao) {
 }
 
 //metodo para imprimir a quantia de ouro na maquina
-void Caixa::mostrarFluxoCaixa() {
-    cout << "Fluxo de Caixa atual: " << getSaldo() << " G" << endl;
-}
+void Caixa::mostrarFluxoCaixa() { cout << "Fluxo de Caixa atual: " << getSaldo() << " G" << endl; }
 
 //setter
 void Caixa::setSenha() {

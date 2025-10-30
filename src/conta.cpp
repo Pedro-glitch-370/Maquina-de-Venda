@@ -63,6 +63,26 @@ void Conta::subtrairSaldo(const double remocao) {
 }
 
 //metodo para mostrar a quantia do usuario
-void Conta::mostrarSaldoConta() {
-    cout << "Seu Saldo atual: " << getSaldo() << " G" << endl;
+void Conta::mostrarSaldoConta() { cout << "Seu Saldo atual: " << getSaldo() << " G" << endl; }
+
+//metodo para devolver saldo do cliente para o "mundo real"
+double Conta::devolverSaldoConta() {
+
+    ifstream leitura("../db/fluxoCaixa.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    //se tiver valor sobrando, devolve para o cliente
+    if (double saldoCliente = j["cliente"]["Valor Cliente"]; saldoCliente > 0) {
+        j["cliente"]["Valor Cliente"] = 0.0;
+
+        ofstream escrita("../db/fluxoCaixa.json");
+        escrita << j.dump(4);
+        escrita.close();
+
+        saldo = 0.0;
+        return saldoCliente;
+    }
+    return 0.0;
 }

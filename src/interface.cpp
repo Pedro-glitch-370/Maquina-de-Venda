@@ -148,4 +148,13 @@ void msgComprarProduto() {
 
 void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15); }
 
+void msgDevolverSaldo(const double saldoCliente) {
+    if (saldoCliente > 0) {
+        falar("Ja vai? Ah... Tome de volta seu ouro!", 30, 15);
+        cout << "Foram devolvidos" << saldoCliente << " G!" << endl;
+    } else {
+        falar("Vejo aqui que voce torrou toda sua grana! Que nunca nos falte o superfluo, nao eh mesmo?", 30, 15);
+    }
+}
+
 void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }

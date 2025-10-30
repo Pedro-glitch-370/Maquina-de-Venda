@@ -20,6 +20,9 @@ class Conta final : public Maquina {
 
         //metodo para mostrar a quantia do usuario
         void mostrarSaldoConta();
+
+        //metodo para devolver saldo do cliente para o "mundo real"
+        double devolverSaldoConta();
 };
 
 #endif //MAQUINA_VENDA_CONTA_H
