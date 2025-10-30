@@ -1,0 +1,17 @@
+{
+    "adm": [
+        {
+            "login": "Anderson"
+        },
+        {
+            "login": "Ithalo"
+        },
+        {
+            "login": "Gabriel"
+        },
+        {
+            "login": "Pedro"
+        }
+    ],
+    "senha": "eu"
+}

@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(maquina_venda src/main.cpp
         src/adm.cpp
-        src/usuarios.cpp
         src/produtos.cpp
         src/maquina.cpp
         src/interface.cpp

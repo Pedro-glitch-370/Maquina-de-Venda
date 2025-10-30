@@ -29,5 +29,6 @@ void msgComprarProduto();
 void msgDefault();
 void msgDevolverSaldo(Conta &contaUsuario);
 void msgAteMais();
+void msgPedirSenha();
 
 #endif //MAQUINA_DE_VENDA_INTERFACE_H

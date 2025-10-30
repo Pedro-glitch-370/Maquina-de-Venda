@@ -39,6 +39,9 @@ class Produto {
 
         //metodo para checar se ja existe um produto de nome igual
         static bool checarProdutoIgual(const string &nome);
+
+        //metodo para ver produtos
+        static void listarProdutos();
 };
 
 #endif //MAQUINA_DE_VENDA_PRODUTOS_H

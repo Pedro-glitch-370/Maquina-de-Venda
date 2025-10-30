@@ -154,3 +154,37 @@ bool Produto::checarProdutoIgual(const string &nome) {
 
     return false;
 }
+
+void Produto::listarProdutos() {
+    ifstream leitura("../db/produtos.json");
+    json j;
+
+    if (!leitura.is_open()) {
+        cout << "Erro ao abrir o arquivo de produtos." << endl;
+        return;
+    }
+
+    leitura >> j;
+    leitura.close();
+
+    if (!j.contains("produtos") || !j["produtos"].is_array()) {
+        cout << "Nenhum produto disponível." << endl;
+        return;
+    }
+
+    //a listagem propriamente dita
+    cout << "\n=== Produtos Disponiveis ===\n" << endl;
+
+    for (const auto& item : j["produtos"]) {
+        Produto produto(
+            item["id"],
+            item["nome"],
+            item["preco"],
+            item["quantidade"]
+        );
+        produto.mostrarDetalhes();
+    }
+
+    //size() retorna o numero de elementos do json
+    cout << "\nTotal de produtos: " << j["produtos"].size() << endl;
+}

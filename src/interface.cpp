@@ -54,6 +54,8 @@ void segundaMsgADM(const int seletor) {
         falar("Eh voce mesmo!! Bom te ver de novo!", 30, 15);
     } else if (seletor == 4) {
         falar("Senha errada, darling! Digite novamente!", 15, 15);
+    } else if (seletor == 5) {
+        falar("Que nome eh esse?? Nao consta aqui entre meus admins!!", 30, 15);
     }
 }
 
@@ -69,9 +71,9 @@ void interfaceADM(Caixa& fluxoDeCaixa) {
     cout << "Pressione 1 pra adicionar produto" << endl;
     cout << "Pressione 2 pra retirar produto" << endl;
     cout << "Pressione 3 pra ver os produtos" << endl;
-    cout << "Pressione 4 pra acessar o fluxo de caixa" << endl;
-    //cout << "Pressione 5 pra alterar a senha da maquina" << endl;
+    cout << "Pressione 4 pra alterar a senha da maquina" << endl;
     cout << "------------------------------------" << endl;
+    cout << "Pressione 9 pra acessar o fluxo de caixa" << endl;
     cout << "Pressione 0 pra sair" << endl;
     cout << "------------------------------------" << endl;
 }
@@ -83,7 +85,7 @@ void interfaceUser(Conta& contaUsuario) {
     cout << "Pressione 1 pra ver nossos produtos" << endl;
     cout << "Pressione 2 para comprar um produto" << endl;
     cout << "------------------------------------" << endl;
-    cout << "Pressione 9 pra acessar o saldo" << endl;
+    cout << "Pressione 9 pra acessar o seu saldo" << endl;
     cout << "Pressione 0 pra sair" << endl;
     cout << "------------------------------------" << endl;
 }
@@ -161,3 +163,8 @@ void msgDevolverSaldo(Conta &contaUsuario) {
 }
 
 void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }
+
+void msgPedirSenha() {
+    falar("Vai mudar a senha?? Eu gostava da antiga...", 30, 15);
+    falar("Mas fiquei curiosa agora! Qual sera a nova senha?", 30, 15);
+}

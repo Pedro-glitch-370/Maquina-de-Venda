@@ -8,7 +8,17 @@ using namespace std;
 using json = nlohmann::json;
 
 //construtor
-Adm::Adm(const string &login, const string &senha) : Usuario(login, senha) {}
+Adm::Adm(const string &login) : login(login) {}
+
+//setters
+void Adm::setLogin() {
+    this->login = login;
+}
+
+//getters
+string Adm::getLogin() const {
+    return login;
+}
 
 //metodo para manter os ID's dos produtos organizados
 int Adm::gerarNovoId() {
@@ -112,4 +122,50 @@ void Adm::retirarProduto(const string &nome) {
     } else {
         cout << "Formato invalido no arquivo JSON." << endl;
     }
+}
+
+//metodo para checar o login
+bool Adm::checarLogin(const string &login) {
+    ifstream leitura("../db/admExistentes.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    if (!j.contains("adm") || !j["adm"].is_array()) {
+        return false;
+    }
+
+    for (const auto& item : j["adm"]) {
+        if (item.contains("login") && item["login"] == login) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//metodo para checar a senha
+bool Adm::checarSenha(const string &senha) {
+
+    ifstream leitura("../db/admExistentes.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    return j.contains("senha") && j["senha"] == senha;
+}
+
+//metodo para alterar senha
+void Adm::alterarSenha(const string &novaSenha) {
+
+    ifstream leitura("../db/admExistentes.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    j["senha"] = novaSenha;
+    ofstream escrita("../db/admExistentes.json");
+    escrita << j.dump(4);
+    escrita.close();
+    cout << "Senha alterada com sucesso!" << endl;
 }

@@ -17,23 +17,29 @@ int main() {
 
     //duas opcoes de usuario
     if (tipoUsuario == 1) {
-        //cadastro
+        //cadastro e checagem dos dados
         primeiraMsgADM();
         string login, senha;
-        segundaMsgADM(1);
-        cin >> login;
-        segundaMsgADM(2);
-        cin >> senha;
 
-        //entrada invalida (a senha eh aa)
-        while (senha != fluxoDeCaixa.getSenha()) {
-            segundaMsgADM(4);
+        do {
+            segundaMsgADM(1);
+            cin >> login;
+            segundaMsgADM(2);
             cin >> senha;
-        }
 
-        //entrada valida confirmada
-        Adm adm(login, senha);
-        segundaMsgADM(3);
+            if (Adm::checarLogin(login) && Adm::checarSenha(senha)) {
+                //entrada valida confirmada
+                Adm adm(login);
+                segundaMsgADM(3);
+                break;
+            }
+
+            if (!Adm::checarLogin(login)) {
+                segundaMsgADM(5);
+            } else if (!Adm::checarSenha(senha)) {
+                segundaMsgADM(4);
+            }
+        } while (true);
 
         int resposta;
         bool ativo = true;
@@ -52,11 +58,11 @@ int main() {
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     msgInvalido(1);
                     resposta = -1;
-                } else if (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0) {
+                } else if (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 9 && resposta != 0) {
                     msgInvalido(2);
                 }
 
-            } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 0);
+            } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 9 && resposta != 0);
 
             switch (resposta) {
                 case 1: {
@@ -101,10 +107,18 @@ int main() {
                 }
 
                 case 3:
-                    Usuario::listarProdutos();
+                    Produto::listarProdutos();
                     break;
 
                 case 4: {
+                    string novaSenha;
+                    msgPedirSenha();
+                    cin >> novaSenha;
+                    Adm::alterarSenha(novaSenha);
+                    break;
+                }
+
+                case 9: {
                         fluxoDeCaixa.mostrarFluxoCaixa();
 
                         bool vendo_fluxo = true;
@@ -217,7 +231,7 @@ int main() {
 
             switch (resposta) {
                 case 1:
-                    Usuario::listarProdutos();
+                    Produto::listarProdutos();
                     break;
 
                 case 2: {
