@@ -30,10 +30,13 @@ void msgInicial() {
 }
 
 int invalidoUmOuDois(int entrada) {
-    while (entrada != 1 and entrada != 2) {
+    while (cin.fail() || (entrada != 1 and entrada != 2)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 30, 15);
         cin >> entrada;
     }
+
     return entrada;
 }
 

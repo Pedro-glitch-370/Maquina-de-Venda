@@ -8,10 +8,8 @@
 using namespace std;
 
 int main() {
-    //valores fixos (por ora)
-    Caixa fluxoDeCaixa(0);
-
     //comeco
+    Caixa fluxoDeCaixa = Caixa::carregarDoJSON();
     msgInicial();
     int tipoUsuario;
     cin >> tipoUsuario;

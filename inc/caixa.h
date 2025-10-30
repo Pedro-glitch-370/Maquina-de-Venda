@@ -13,6 +13,9 @@ class Caixa final : public Maquina {
         //construtor
         explicit Caixa(double saldo);
 
+        //metodo para carregar o saldo de fluxoCaixa
+        static Caixa carregarDoJSON();
+
         //getter
         double getSaldo() override;
 

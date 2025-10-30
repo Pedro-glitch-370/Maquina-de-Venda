@@ -9,6 +9,17 @@ using json = nlohmann::json;
 //construtor
 Caixa::Caixa(const double saldo) : Maquina(saldo) {}
 
+//metodo para carregar o saldo de fluxoCaixa
+Caixa Caixa::carregarDoJSON() {
+    ifstream leitura("../db/fluxoCaixa.json");
+    json j;
+    leitura >> j;
+    leitura.close();
+
+    const double saldo = j["caixa"]["Valor"];
+    return Caixa(saldo);
+}
+
 //getter
 double Caixa::getSaldo() {
     ifstream leitura("../db/fluxoCaixa.json");
