@@ -24,10 +24,10 @@ string Adm::getLogin() const {
 void Adm::adicionarProduto(const string &nome, const double preco, const int qnt) {
     //cria um var do tipo ifstream que vai ler e guardar o que tá no arquivo
     ifstream leitura("../db/produtos.json");
-
     json j;
+
     if (leitura.is_open()) {
-        leitura >> j; //agora joga dentro de j e automaticamente transforma em json
+        leitura >> j; //joga leitura dentro de j e automaticamente transforma em json
     }
     leitura.close();
 

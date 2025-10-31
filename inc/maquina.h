@@ -24,7 +24,7 @@ public:
     //metodo virtual para remover quantia do saldo
     virtual void subtrairSaldo(double) = 0;
 
-    //destrutor
+    //destrutor virtual para os destrutores das derivadas serem chamados corretamente
     virtual ~Maquina() = default;
 };
 
