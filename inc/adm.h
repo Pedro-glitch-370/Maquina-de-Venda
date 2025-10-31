@@ -21,7 +21,7 @@ class Adm {
         static void adicionarProduto(const string &nome, double preco, int qnt);
 
         //metodo para remover um produto existente
-        static void retirarProduto(const string &nome);
+        static bool retirarProduto(const string &nome);
 
         //metodo para checar o login
         static bool checarLogin(const string &login);

@@ -25,7 +25,7 @@ void msgAddProduto(int seletor);
 void msgTirarProduto();
 void msgAddOuro();
 void msgTirarOuro();
-void msgComprarProduto();
+void msgComprarProduto(int seletor);
 void msgDefault();
 void msgDevolverSaldo(Conta &contaUsuario);
 void msgAteMais();

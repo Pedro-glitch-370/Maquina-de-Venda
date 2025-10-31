@@ -65,8 +65,8 @@ int main() {
             } while (resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 9 && resposta != 0);
 
             switch (resposta) {
+                //adicionar produtos
                 case 1: {
-                    //parametros de adicionarProduto
                     int qnt;
                     string nome;
                     double preco;
@@ -90,26 +90,39 @@ int main() {
                     break;
                 }
 
+                //retirar produtos
                 case 2: {
-                    //paramentro de retirarProduto
                     msgTirarProduto();
                     string produtoARetirar;
                     cin >> produtoARetirar;
 
-                    //entrada invalida
-                    while (cin.fail()) {
-                        msgInvalido(3);
+                    while (true) {
+                        //nao acontece, mas por precaucao
+                        if (cin.fail()) {
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            msgInvalido(3);
+                            continue;
+                        }
+
+                        if (Adm::retirarProduto(produtoARetirar)) {
+                            break;
+                        }
+
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        msgComprarProduto(3);
                         cin >> produtoARetirar;
                     }
-
-                    Adm::retirarProduto(produtoARetirar);
                     break;
                 }
 
+                //listar produtos
                 case 3:
                     Produto::listarProdutos();
                     break;
 
+                //redefinir senha
                 case 4: {
                     string novaSenha;
                     msgPedirSenha();
@@ -118,6 +131,7 @@ int main() {
                     break;
                 }
 
+                //acessar fluxo de caixa
                 case 9: {
                         fluxoDeCaixa.mostrarFluxoCaixa();
 
@@ -138,6 +152,7 @@ int main() {
                             } while (resposta != 1 && resposta != 2 && resposta != 3);
 
                             switch (resposta) {
+                                //adicionar ao fluxo
                                 case 1: {
                                     double adicao;
                                     msgAddOuro();
@@ -151,6 +166,8 @@ int main() {
                                     fluxoDeCaixa.mostrarFluxoCaixa();
                                     break;
                                 }
+
+                                //retirar do fluxo
                                 case 2: {
                                     double remocao;
                                     msgTirarOuro();
@@ -159,9 +176,13 @@ int main() {
                                     fluxoDeCaixa.mostrarFluxoCaixa();
                                     break;
                                 }
+
+                                //retornar a interface principal
                                 case 3:
                                     vendo_fluxo = false;
                                     break;
+
+                                //caso algo de muito errado
                                 default:
                                     msgDefault();
                                     break;
@@ -170,17 +191,13 @@ int main() {
                         break;
                     }
 
-                /*case 5: {
-                    string novaSenha;
-                    fluxoDeCaixa.mudarSenha(novaSenha);
-                    break;
-                }*/
-
+                //sair do programa
                 case 0:
                     msgAteMais();
                     ativo = false;
                     break;
 
+                //caso algo de muito errado
                 default:
                     msgDefault();
                     break;
@@ -204,13 +221,21 @@ int main() {
             msgExplicar2();
         }
 
+        //depositar saldo inicial
         double valorInicial;
         cin >> valorInicial;
 
-        while (cin.fail()) {
+        while (cin.fail() || valorInicial <= 0) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            msgInvalido(5);
+
+            if (valorInicial <= 0) {
+                msgInvalido(6);
+            } else {
+                msgInvalido(5);
+            }
+
+            cin >> valorInicial;
         }
 
         //interface de opcoes para usuario
@@ -224,33 +249,51 @@ int main() {
             cin >> resposta;
 
             //entrada invalida
-            while (resposta != 1 and resposta != 2 and resposta != 9 and resposta != 0) {
-                msgInvalido(2);
+            do {
                 cin >> resposta;
-            }
+
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    msgInvalido(1);
+                    resposta = -1;
+                } else if (resposta != 1 && resposta != 2 && resposta != 9 && resposta != 0) {
+                    msgInvalido(2);
+                }
+
+            } while (resposta != 1 && resposta != 2 && resposta != 9 && resposta != 0);
 
             switch (resposta) {
+                //listar produtos
                 case 1:
                     Produto::listarProdutos();
                     break;
 
+                //comprar produto
                 case 2: {
-                    msgComprarProduto();
+                    msgComprarProduto(1);
 
                     string nomeProduto;
                     getline(cin >> ws, nomeProduto);
 
-                    if (nomeProduto == "Voltar") {
-                        break;
-                    }
+                    //laco enquanto o cliente nao compra ou nao retorna
+                    while (true) {
+                        if (nomeProduto == "Voltar") {
+                            break;
+                        }
 
-                    //a compra aqui ocorre ja na condicao do if
-                    if (Produto::comprarProduto(nomeProduto, contaUsuario, fluxoDeCaixa)) {
-                        Produto::tirarSeEsgotado(nomeProduto);
+                        if (Produto::comprarProduto(nomeProduto, contaUsuario, fluxoDeCaixa)) {
+                            Produto::tirarSeEsgotado(nomeProduto);
+                            break;
+                        }
+
+                        msgComprarProduto(2);
+                        cin >> nomeProduto;
                     }
                     break;
                 }
 
+                //acessar saldo da conta
                 case 9: {
                         contaUsuario.mostrarSaldoConta();
 
@@ -265,6 +308,7 @@ int main() {
                             }
 
                             switch (resposta) {
+                                //adicionar ao saldo
                                 case 1: {
                                     msgAddOuro();
                                     double adicao;
@@ -274,6 +318,7 @@ int main() {
                                     break;
                                 }
 
+                                //retirar do saldo
                                 case 2: {
                                     double remocao;
                                     msgTirarOuro();
@@ -283,10 +328,12 @@ int main() {
                                     break;
                                 }
 
+                                //retornar a interface principal
                                 case 3:
                                     vendo_saldo = false;
                                     break;
 
+                                //caso algo de muito errado
                                 default:
                                     msgDefault();
                                     break;
@@ -295,12 +342,14 @@ int main() {
                         break;
                     }
 
+                //sair do programa
                 case 0:
                     msgDevolverSaldo(contaUsuario);
                     msgAteMais();
                     ativo = false;
                     break;
 
+                //caso algo de muito errado
                 default:
                     msgDefault();
                     break;

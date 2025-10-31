@@ -64,7 +64,7 @@ bool Produto::comprarProduto(string &nomeProduto, Conta &contaUsuario, Caixa &fl
             int estoque = item["quantidade"];
             double preco = item["preco"];
 
-            //caso nao tenha mais unidade do produto
+            //caso nao tenha mais unidade do produto (nao ocorre, mas so por precaucao)
             if (estoque <= 0) {
                 cout << "Produto sem estoque!" << endl;
                 return false;

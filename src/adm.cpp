@@ -49,7 +49,7 @@ void Adm::adicionarProduto(const string &nome, const double preco, const int qnt
 }
 
 //metodo para remover um produto existente
-void Adm::retirarProduto(const string &nome) {
+bool Adm::retirarProduto(const string &nome) {
     //um objeto para ler produtos.json e outro para guardar o conteudo do arquivo
     ifstream leitura("../db/produtos.json");
     json j;
@@ -60,17 +60,17 @@ void Adm::retirarProduto(const string &nome) {
         leitura.close();
     } else {
         cout << "Erro ao abrir o arquivo de produtos." << endl;
-        return;
+        return false;
     }
-
-    bool encontrado = false;
 
     //checa se a chave "produtos" existe e se ela é um array
     if (j.contains("produtos") && j["produtos"].is_array()) {
+        bool encontrado = false;
         //cria um novo array sem o produto que vai ser retirado
         json novosProdutos = json::array();
 
         //procura o produto a ser retirado
+        //eh um for each que passeia por cada produto
         for (const auto& produto : j["produtos"]) {
             if (produto["nome"] == nome) {
                 encontrado = true;
@@ -83,7 +83,7 @@ void Adm::retirarProduto(const string &nome) {
         //se o produto nao for encontrado
         if (!encontrado) {
             cout << "Produto " << nome << " nao encontrado." << endl;
-            return;
+            return false;
         }
 
         //se o produto for encontrado, ocorre a substituicao dos arrays
@@ -93,12 +93,18 @@ void Adm::retirarProduto(const string &nome) {
         if (escrita.is_open()) {
             escrita << j.dump(4); //aqui serve para identacao
             escrita.close();
-        } else {
-            cout << "Erro ao salvar o arquivo de produtos." << endl;
+            return true;
         }
-    } else {
-        cout << "Formato invalido no arquivo JSON." << endl;
+
+        //manter esses casos de erro caso, bem, aconteca um erro ne
+        cout << "Erro ao salvar o arquivo de produtos." << endl;
+        return false;
+
     }
+
+    cout << "Formato invalido no arquivo JSON." << endl;
+    return false;
+
 }
 
 //metodo para checar o login

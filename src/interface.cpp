@@ -112,6 +112,10 @@ void msgInvalido(const int seletor) {
         falar("Oooops! Saldo invalido! Digite novamente!", 30, 15);
     } else if (seletor == 5) {
         falar("Oooops! Entrada invalida! Digite um NUMERO!", 30, 15);
+    } else if (seletor == 6) {
+        falar("Oh! Voce tentou colocar 0 de ouro ou menos?!", 30, 15);
+        falar("Com esse saldo, nem uma bala de hortela voce compra, docinho!", 30, 15);
+        falar("Digite novamente!", 30, 15);
     }
 }
 
@@ -146,9 +150,15 @@ void msgAddOuro() { falar("Quanto de ouro voce deseja adicionar?", 30, 15); }
 
 void msgTirarOuro() { falar("Quanto de ouro voce deseja retirar?", 30, 15); }
 
-void msgComprarProduto() {
-    falar("Enfim, as compras! Qual produto voce deseja?", 30, 15);
-    falar("Se quiser retornar, escreva Voltar!", 30, 15);
+void msgComprarProduto(const int seletor) {
+    if (seletor == 1) {
+        falar("Enfim, as compras! Qual produto voce deseja?", 30, 15);
+        falar("Se quiser retornar, escreva Voltar!", 30, 15);
+    } else if (seletor == 2) {
+        falar("Digite novamente, meu bem.", 30, 15);
+    } else if (seletor == 3) {
+        falar("Parece que algo deu errado... Digite novamente! Para retornar, digite Voltar!", 30, 15);
+    }
 }
 
 void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe mandando de volta!", 30, 15); }
