@@ -1,3 +1,7 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "../inc/interface.h"
 #include "../inc/caixa.h"
 #include "../inc/conta.h"
@@ -11,52 +15,58 @@
 #include <mutex>
 #include <cstdlib>
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
-using namespace std;
-
 void delay(const int milissegundos) {
-    this_thread::sleep_for(chrono::milliseconds(milissegundos));
+    std::this_thread::sleep_for(std::chrono::milliseconds(milissegundos));
 }
 
 //metodo unico para simular a fala da Mettatton
+//a implementacao do som foi somente um extra permitido pelo tempo restante disponivel
 void falar(const string& texto, const int delay_caractere, const int delay_final) {
-    // Inicializa lista de arquivos de audio uma vez (procura em paths comuns)
-    static std::vector<std::string> audio_files;
-    static std::once_flag init_flag;
-    static std::mt19937 rng((std::random_device())());
 
-    std::call_once(init_flag, [&]() {
+    //cria uma unica vez um vetor para armazenar os caminhos dos arquivos de audio
+    static std::vector<std::string> arquivosDeSom;
+    static std::once_flag init_flag;
+    //gerador de numero aleatorio
+    static std::mt19937 rng((random_device())());
+
+    //a flag aqui garante que o codigo so ocorra uma vez
+    call_once(init_flag, [&] {
         using namespace std::filesystem;
-        std::vector<std::string> candidates = {"./assets", "assets", "build/assets", "./build/assets", "../build/assets"};
-        for (const auto &c : candidates) {
+
+        //vetor com os possiveis caminhos onde a funcao vai procurar os audios
+        std::vector<std::string> candidatos = {"./assets", "assets", "build/assets", "./build/assets", "../build/assets"};
+        for (const auto &c : candidatos) {
+            //cada caminho eh verificado no for each por meio do objeto path
             path p(c);
             if (exists(p) && is_directory(p)) {
-                for (const auto &entry : directory_iterator(p)) {
-                    if (entry.is_regular_file()) {
-                        std::string ext = entry.path().extension().string();
-                        std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+
+                //itera sobre cada item dentro do diretorio encontrado
+                for (const auto &item : directory_iterator(p)) {
+                    if (item.is_regular_file()) {
+                        //pega a extensao do arquivo
+                        std::string ext = item.path().extension().string();
+                        transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
                         if (ext == ".wav" || ext == ".mp3" || ext == ".ogg") {
-                            audio_files.push_back(entry.path().string());
+                            arquivosDeSom.push_back(item.path().string());
                         }
                     }
                 }
             }
-            if (!audio_files.empty()) break;
+            //se ja achou pelo menos um arquivo de som, para a busca
+            if (!arquivosDeSom.empty()) break;
         }
     });
 
     //imprime caractere, toca som aleatorio e aguarda
     for (const char c : texto) {
-        cout << c << flush;
+        std::cout << c << std::flush;
 
-        if (!audio_files.empty()) {
-            // escolhe um arquivo aleatório
-            std::uniform_int_distribution<size_t> dist(0, audio_files.size() - 1);
-            std::string choice = audio_files[dist(rng)];
+        if (!arquivosDeSom.empty()) {
+            //escolhe um arquivo aleatório
+            std::uniform_int_distribution<size_t> dist(0, arquivosDeSom.size() - 1);
+            std::string choice = arquivosDeSom[dist(rng)];
 
-            std::thread([choice]() {
+            thread([choice] {
 #ifdef _WIN32
                 PlaySoundA(choice.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 #else
@@ -65,28 +75,26 @@ void falar(const string& texto, const int delay_caractere, const int delay_final
 #endif
             }).detach();
         }
-
         delay(delay_caractere);
     }
 
     //pula linha e aguarda
-    cout << endl;
+    std::cout << std::endl;
     delay(delay_final);
 }
 
 void msgInicial() {
-    falar("Bem-vindos, queridos, a maquina de vendas mais glamourosa de todo o subsolo!!", 80, 300);
+    falar("Bem-vindos, queridos, a maquina de vendas mais glamourosa de todo o subsolo!!", 40, 300);
     falar("Voce eh ADM (1) ou um usuario qualquer (2)?", 60, 100);
 }
 
 int invalidoUmOuDois(int entrada) {
-    while (cin.fail() || (entrada != 1 and entrada != 2)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while (std::cin.fail() || (entrada != 1 and entrada != 2)) {
+        std::cin.clear();
+        std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
         falar("Entrada invalida! Digite apenas 1 ou 2, darling! Nao eh dificil!", 60, 100);
-        cin >> entrada;
+        std::cin >> entrada;
     }
-
     return entrada;
 }
 
@@ -115,29 +123,29 @@ void primeiraMsgUser() {
 }
 
 void interfaceADM(Caixa& fluxoDeCaixa) {
-    cout << "------------------------------------" << endl;
+    std::cout << "------------------------------------" << std::endl;
     falar("O que deseja fazer, estrela?", 60, 100);
-    cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << endl;
-    cout << "Pressione 1 pra adicionar produto" << endl;
-    cout << "Pressione 2 pra retirar produto" << endl;
-    cout << "Pressione 3 pra ver os produtos" << endl;
-    cout << "Pressione 4 pra alterar a senha da maquina" << endl;
-    cout << "------------------------------------" << endl;
-    cout << "Pressione 9 pra acessar o fluxo de caixa" << endl;
-    cout << "Pressione 0 pra sair" << endl;
-    cout << "------------------------------------" << endl;
+    std::cout << "Fluxo de Caixa: " << fluxoDeCaixa.getSaldo() << " G" << std::endl;
+    std::cout << "Pressione 1 pra adicionar produto" << std::endl;
+    std::cout << "Pressione 2 pra retirar produto" << std::endl;
+    std::cout << "Pressione 3 pra ver os produtos" << std::endl;
+    std::cout << "Pressione 4 pra alterar a senha da maquina" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+    std::cout << "Pressione 9 pra acessar o fluxo de caixa" << std::endl;
+    std::cout << "Pressione 0 pra sair" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
 }
 
 void interfaceUser(Conta& contaUsuario) {
-    cout << "------------------------------------" << endl;
+    std::cout << "------------------------------------" << std::endl;
     falar("O que deseja fazer agora, estrela?", 60, 100);
-    cout << "Saldo atual: " << contaUsuario.getSaldo() << " G" << endl;
-    cout << "Pressione 1 pra ver nossos produtos" << endl;
-    cout << "Pressione 2 pra comprar um produto" << endl;
-    cout << "------------------------------------" << endl;
-    cout << "Pressione 9 pra acessar o seu saldo" << endl;
-    cout << "Pressione 0 pra sair" << endl;
-    cout << "------------------------------------" << endl;
+    std::cout << "Saldo atual: " << contaUsuario.getSaldo() << " G" << std::endl;
+    std::cout << "Pressione 1 pra ver nossos produtos" << std::endl;
+    std::cout << "Pressione 2 pra comprar um produto" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+    std::cout << "Pressione 9 pra acessar o seu saldo" << std::endl;
+    std::cout << "Pressione 0 pra sair" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
 }
 
 void msgExplicar1() {
@@ -217,14 +225,14 @@ void msgDefault() { falar("Darling, nao faco ideia de como voce chegou aqui!\nTe
 
 void msgDevolverSaldo(Conta &contaUsuario) {
     if (const double saldoCliente = contaUsuario.devolverSaldoConta(); saldoCliente > 0) {
-        falar("Ja vai? Ah... Tome de volta seu ouro!", 30, 15);
-        cout << "Foram devolvidos " << saldoCliente << " G!" << endl;
+        falar("Ja vai? Ah... Tome de volta seu ouro!", 40, 15);
+        std::cout << "Foram devolvidos " << saldoCliente << " G!" << std::endl;
     } else {
         falar("Vejo aqui que voce torrou toda sua grana! Que nunca nos falte o superfluo, nao eh mesmo?", 30, 15);
     }
 }
 
-void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 30, 15); }
+void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 40, 15); }
 
 void msgPedirSenha() {
     falar("Vai mudar a senha?? Eu gostava da antiga...", 30, 15);

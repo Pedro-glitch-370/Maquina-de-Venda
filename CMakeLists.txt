@@ -16,6 +16,6 @@ add_executable(maquina_venda src/main.cpp
 )
 
 if(WIN32)
-        # Link with winmm on Windows only
+        #extra devido ao som
         target_link_libraries(maquina_venda PRIVATE winmm)
 endif()
