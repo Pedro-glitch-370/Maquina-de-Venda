@@ -128,6 +128,8 @@ int main() {
                 //listar produtos
                 case 3:
                     Produto::listarProdutos();
+                    cin.get();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     break;
 
                 //redefinir senha
@@ -274,6 +276,8 @@ int main() {
                 //listar produtos
                 case 1:
                     Produto::listarProdutos();
+                    cin.get();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     break;
 
                 //comprar produto

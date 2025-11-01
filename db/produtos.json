@@ -19,6 +19,11 @@
             "nome": "Torta de Caramelo",
             "preco": 7.5,
             "quantidade": 8
+        },
+        {
+            "nome": "Picole Duplo",
+            "preco": 5.8,
+            "quantidade": 20
         }
     ]
 }

@@ -177,5 +177,5 @@ void Produto::listarProdutos() {
 
     //size() retorna o numero de elementos do json
     cout << "Total de produtos: " << j["produtos"].size() << endl;
-    cout << endl;
+    cout << "Pressione qualquer tecla para continuar." << endl;
 }
