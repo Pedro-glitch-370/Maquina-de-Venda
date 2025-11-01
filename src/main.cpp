@@ -68,33 +68,37 @@ int main() {
                 //adicionar produtos
                 case 1: {
                     int qnt;
-                    string nome;
+                    string produtoAAdicionar;
                     double preco;
 
                     //passagem de dados
                     msgAddProduto(1);
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    getline(cin, nome);
 
-                    //entrada invalida
                     do {
-                        msgAddProduto(4);
-                        getline(cin, nome);
-                    } while (Produto::checarProdutoIgual(nome));
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        getline(cin, produtoAAdicionar);
+
+                        //entrada invalida
+                        if (Produto::checarProdutoIgual(produtoAAdicionar)) {
+                            msgAddProduto(4);
+                        }
+
+                    } while (Produto::checarProdutoIgual(produtoAAdicionar));
 
                     msgAddProduto(2);
                     cin >> preco;
                     msgAddProduto(3);
                     cin >> qnt;
-                    Adm::adicionarProduto(nome, preco, qnt);
+                    Adm::adicionarProduto(produtoAAdicionar, preco, qnt);
                     break;
                 }
 
                 //retirar produtos
                 case 2: {
                     msgTirarProduto();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     string produtoARetirar;
-                    cin >> produtoARetirar;
+                    getline(cin, produtoARetirar);
 
                     while (true) {
                         //nao acontece, mas por precaucao
@@ -105,6 +109,10 @@ int main() {
                             continue;
                         }
 
+                        if (produtoARetirar == "Voltar") {
+                            break;
+                        }
+
                         if (Adm::retirarProduto(produtoARetirar)) {
                             break;
                         }
@@ -112,7 +120,7 @@ int main() {
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         msgComprarProduto(3);
-                        cin >> produtoARetirar;
+                        getline(cin, produtoARetirar);
                     }
                     break;
                 }

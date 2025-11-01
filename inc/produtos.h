@@ -35,7 +35,7 @@ class Produto {
         static void tirarSeEsgotado(string &nomeProduto);
 
         //metodo para checar se ja existe um produto de nome igual
-        static bool checarProdutoIgual(const string &nome);
+        static bool checarProdutoIgual(const string &produtoAAdicionar);
 
         //metodo para ver produtos
         static void listarProdutos();

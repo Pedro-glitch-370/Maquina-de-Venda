@@ -125,7 +125,7 @@ void Produto::tirarSeEsgotado(string &nomeProduto) {
 }
 
 //metodo para checar se ja existe um produto de nome igual
-bool Produto::checarProdutoIgual(const string &nome) {
+bool Produto::checarProdutoIgual(const string &produtoAAdicionar) {
 
     ifstream leitura("../db/produtos.json");
     json j;
@@ -137,7 +137,7 @@ bool Produto::checarProdutoIgual(const string &nome) {
 
     if (j.contains("produtos") && j["produtos"].is_array()) {
         for (const auto& produto : j["produtos"]) {
-            if (produto["nome"] == nome) {
+            if (produto["nome"] == produtoAAdicionar) {
                 return true;
             }
         }
@@ -177,4 +177,5 @@ void Produto::listarProdutos() {
 
     //size() retorna o numero de elementos do json
     cout << "Total de produtos: " << j["produtos"].size() << endl;
+    cout << endl;
 }

@@ -130,6 +130,7 @@ void msgAddSaldo(const int seletor) {
 void msgAddProduto(const int seletor) {
     if (seletor == 1) {
         falar("Uhh, novo produto! Me diga tudo sobre ele!", 30, 15);
+        falar("Porem, se quiser retornar, digite agora Voltar.", 30, 15);
         falar("Digite o nome:", 30, 15);
     } else if (seletor == 2) {
         falar("Digite o preco:", 30, 15);
@@ -143,7 +144,8 @@ void msgAddProduto(const int seletor) {
 
 void msgTirarProduto() {
     falar("Ahhh... vai tirar um? Que pena...", 30, 15);
-    falar("Digite o nome do produto a ser retirado:", 30, 15);
+    falar("Se quiser retornar, digite Voltar.", 30, 15);
+    falar("Se nao, digite o nome do produto a ser retirado:", 30, 15);
 }
 
 void msgAddOuro() { falar("Quanto de ouro voce deseja adicionar?", 30, 15); }
