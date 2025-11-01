@@ -246,7 +246,6 @@ int main() {
 
         while (ativo) {
             interfaceUser(contaUsuario);
-            cin >> resposta;
 
             //entrada invalida
             do {
