@@ -298,13 +298,19 @@ int main() {
 
                         bool vendo_saldo = true;
                         while (vendo_saldo) {
-                            msgAddSaldo(2);
-                            cin >> resposta;
-
-                            while (resposta != 1 and resposta != 2 and resposta != 3) {
-                                msgInvalido(2);
+                            do {
+                                msgAddSaldo(2);
                                 cin >> resposta;
-                            }
+
+                                if (cin.fail()) {
+                                    cin.clear();
+                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                    msgInvalido(1);
+                                    resposta = 0; //pra forcar a repeticao
+                                } else if (resposta != 1 && resposta != 2 && resposta != 3) {
+                                    msgInvalido(2);
+                                }
+                            } while (resposta != 1 && resposta != 2 && resposta != 3);
 
                             switch (resposta) {
                                 //adicionar ao saldo
@@ -312,6 +318,20 @@ int main() {
                                     msgAddOuro();
                                     double adicao;
                                     cin >> adicao;
+
+                                    //entrada invalida
+                                    do {
+                                        if (cin.fail()) {
+                                            msgInvalido(1);
+                                        } else if (adicao <= 0) {
+                                            msgInvalido(2);
+                                        }
+                                        cin.clear();
+                                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                        cin >> adicao;
+
+                                    } while (cin.fail() || adicao <= 0);
+
                                     contaUsuario.adicionarSaldo(adicao);
                                     contaUsuario.mostrarSaldoConta();
                                     break;
@@ -322,6 +342,20 @@ int main() {
                                     double remocao;
                                     msgTirarOuro();
                                     cin >> remocao;
+
+                                    //entrada invalida
+                                    do {
+                                        if (cin.fail()) {
+                                            msgInvalido(1);
+                                        } else if (remocao <= 0) {
+                                            msgInvalido(2);
+                                        }
+                                        cin.clear();
+                                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                        cin >> remocao;
+
+                                    } while (cin.fail() || remocao <= 0);
+
                                     contaUsuario.subtrairSaldo(remocao);
                                     contaUsuario.mostrarSaldoConta();
                                     break;
