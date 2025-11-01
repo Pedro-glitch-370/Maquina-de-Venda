@@ -1,0 +1,3 @@
+/home/gabriel/Documentos/codigos/Maquina-de-Venda/build/CMakeFiles/maquina_venda.dir
+/home/gabriel/Documentos/codigos/Maquina-de-Venda/build/CMakeFiles/edit_cache.dir
+/home/gabriel/Documentos/codigos/Maquina-de-Venda/build/CMakeFiles/rebuild_cache.dir

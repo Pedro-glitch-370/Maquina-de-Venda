@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/main.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/main.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/main.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/adm.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/adm.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/adm.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/adm.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/produtos.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/produtos.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/produtos.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/produtos.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/maquina.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/maquina.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/maquina.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/maquina.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/interface.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/interface.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/interface.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/interface.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/conta.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/conta.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/conta.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/conta.cpp.o"
+},
+{
+  "directory": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/build",
+  "command": "/usr/bin/g++   -g -std=gnu++20 -o CMakeFiles/maquina_venda.dir/src/caixa.cpp.o -c /home/gabriel/Documentos/codigos/Maquina-de-Venda/src/caixa.cpp",
+  "file": "/home/gabriel/Documentos/codigos/Maquina-de-Venda/src/caixa.cpp",
+  "output": "CMakeFiles/maquina_venda.dir/src/caixa.cpp.o"
+}
+]

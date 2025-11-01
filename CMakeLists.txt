@@ -15,4 +15,7 @@ add_executable(maquina_venda src/main.cpp
         json/json.hpp
 )
 
-target_link_libraries(maquina_venda winmm)
+if(WIN32)
+        # Link with winmm on Windows only
+        target_link_libraries(maquina_venda PRIVATE winmm)
+endif()

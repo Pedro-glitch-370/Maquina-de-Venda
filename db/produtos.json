@@ -18,12 +18,12 @@
         {
             "nome": "Torta de Caramelo",
             "preco": 7.5,
-            "quantidade": 8
+            "quantidade": 7
         },
         {
             "nome": "Picole Duplo",
             "preco": 5.8,
-            "quantidade": 20
+            "quantidade": 19
         }
     ]
 }
