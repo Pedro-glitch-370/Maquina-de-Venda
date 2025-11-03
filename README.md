@@ -9,7 +9,7 @@
 Sistema avançado de gerenciamento de máquinas de vendas desenvolvido em C++ para a disciplina de Estruturas de Dados Orientadas a Objetos da UFPE. Inspirado no carismático Mettaton de Undertale, o sistema implementa uma suíte completa de operações CRUD com modos de usuário duplos e persistência de dados baseada em JSON.
 
 <div align="center">
-  <img src="https://static.wikia.nocookie.net/undertale-determination/images/5/58/Mettaton.gif/revision/latest?cb=20160424231856&path-prefix=pt-br" width="30%" height="30%">
+  <img src="https://c.tenor.com/rFfEUaNjtDMAAAAd/tenor.gif" width="30%" height="30%">
 </div>
 
 ## ✨ Funcionalidades
