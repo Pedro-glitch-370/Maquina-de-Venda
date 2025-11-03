@@ -123,6 +123,9 @@ cd Maquina-de-Venda
 - **ITHALO-FS**  
 - **GabrielCarvalhoSI**
 
+## Relatório Oficial do Projeto
+- [Link para Relatório (docs)](https://docs.google.com/document/d/1GF5C01rqBJlJBsXLeghznUPUu5SOB7ExUnj-RCg2AcM/edit?usp=sharing)
+
 ### Instituição
 - Universidade Federal de Pernambuco (UFPE)
 - Centro de Informática
