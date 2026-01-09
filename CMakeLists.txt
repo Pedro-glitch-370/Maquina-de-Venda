@@ -13,6 +13,10 @@ add_executable(maquina_venda src/main.cpp
         json/json.hpp
         json/json.hpp
         json/json.hpp
+        inc/entradaADM.h
+        src/entradaADM.cpp
+        inc/entradaUser.h
+        src/entradaUser.cpp
 )
 
 if(WIN32)

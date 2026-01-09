@@ -76,7 +76,7 @@ void Caixa::subtrairSaldo(const double remocao) {
 
     escrita.close();
 
-    cout << "No caixa tem " << valorAtual - remocao << "G" << endl;
+    cout << "No caixa tem " << valorAtual - remocao << " G" << endl;
 
     saldo = valorAtual - remocao;
 }

@@ -14,6 +14,7 @@
 #include <vector>
 #include <mutex>
 #include <cstdlib>
+#include <algorithm>
 
 void delay(const int milissegundos) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milissegundos));
@@ -148,6 +149,22 @@ void interfaceUser(Conta& contaUsuario) {
     std::cout << "------------------------------------" << std::endl;
 }
 
+void interfaceSaldo(const int seletor) {
+    if (seletor == 1) {
+        std::cout << "------------------------------------" << std::endl;
+        std::cout << "Pressione 1 pra adicionar ouro ao caixa" << std::endl;
+        std::cout << "Pressione 2 pra retirar ouro do caixa" << std::endl;
+        std::cout << "Pressione 3 pra retornar ao menu principal" << std::endl;
+        std::cout << "------------------------------------" << std::endl;
+    } else {
+        std::cout << "------------------------------------" << std::endl;
+        std::cout << "Pressione 1 pra adicionar ouro ao seu saldo" << std::endl;
+        std::cout << "Pressione 2 pra retirar ouro do seu saldo" << std::endl;
+        std::cout << "Pressione 3 pra retornar ao menu principal" << std::endl;
+        std::cout << "------------------------------------" << std::endl;
+    }
+}
+
 void msgExplicar1() {
     falar("Adicione a quantidade de saldo que voce vai usar nas compras. Depois, eh so curtir e torrar!!", 80, 200);
     falar("E nao se preocupe se restar algum valor aqui dentro. Tenho ouro suficiente no caixa para qualquer troco!", 80, 200);
@@ -237,4 +254,22 @@ void msgAteMais() { falar("Ate a proxima, darling! Nao mude de canal!", 40, 15);
 void msgPedirSenha() {
     falar("Vai mudar a senha?? Eu gostava da antiga...", 30, 15);
     falar("Mas fiquei curiosa agora! Qual sera a nova senha?", 30, 15);
+}
+
+void limparEntrada() {
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+int lerOpcao(const vector<int>& validas) {
+    int valor;
+    while (true) {
+        if (!(cin >> valor)) {
+            limparEntrada();
+            msgInvalido(1);
+            continue;
+        }
+        if (find(validas.begin(), validas.end(), valor) != validas.end()) { return valor; }
+        msgInvalido(2);
+    }
 }

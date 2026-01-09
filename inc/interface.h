@@ -3,7 +3,7 @@
 #include "../inc/caixa.h"
 #include "../inc/conta.h"
 #include <string>
-#include <iostream>
+#include <vector>
 using namespace std;
 
 //metodo unico para simular a fala da Mettatton
@@ -17,6 +17,7 @@ void segundaMsgADM(int seletor);
 void primeiraMsgUser();
 void interfaceADM(Caixa &fluxoDeCaixa);
 void interfaceUser(Conta &contaUsuario);
+void interfaceSaldo(int seletor);
 void msgExplicar1();
 void msgExplicar2();
 void msgInvalido(int seletor);
@@ -30,5 +31,7 @@ void msgDefault();
 void msgDevolverSaldo(Conta &contaUsuario);
 void msgAteMais();
 void msgPedirSenha();
+void limparEntrada();
+int lerOpcao(const vector<int>& validas);
 
 #endif //MAQUINA_DE_VENDA_INTERFACE_H
